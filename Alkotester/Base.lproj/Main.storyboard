@@ -10,65 +10,65 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Настройки-->
         <scene sceneID="IDt-rH-ry5">
             <objects>
-                <viewController id="lYE-nA-dQl" sceneMemberID="viewController">
+                <viewController id="lYE-nA-dQl" customClass="SettingsVC" customModule="Alkotester" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oT3-MA-AzK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95017202079384677" green="0.19047899677354463" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Lgg-Ab-odb"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="xbc-AP-7Dg"/>
+                    <tabBarItem key="tabBarItem" title="Настройки" id="xbc-AP-7Dg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="898-79-ohp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-848" y="734"/>
         </scene>
-        <!--Item-->
+        <!--Ваше состояние-->
         <scene sceneID="rko-qu-qfi">
             <objects>
-                <viewController id="Jjg-BZ-kUX" sceneMemberID="viewController">
+                <viewController id="Jjg-BZ-kUX" customClass="StateVC" customModule="Alkotester" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ITa-kn-PRy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.66666668650000005" green="0.061913310780000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="nhb-hZ-Ayl"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="j8N-KM-el4"/>
+                    <tabBarItem key="tabBarItem" title="Ваше состояние" id="j8N-KM-el4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meA-L0-V5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-124" y="735"/>
         </scene>
-        <!--Item 2-->
+        <!--Добавить-->
         <scene sceneID="mub-4P-45i">
             <objects>
-                <viewController id="2sX-Eo-lwQ" sceneMemberID="viewController">
+                <viewController id="2sX-Eo-lwQ" customClass="AddVC" customModule="Alkotester" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LQo-H0-aNY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Nnh-dp-E2b"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="d6m-5T-KXG"/>
+                    <tabBarItem key="tabBarItem" title="Добавить" id="d6m-5T-KXG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXR-kL-U7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="549" y="282"/>
         </scene>
-        <!--Item 1-->
+        <!--История-->
         <scene sceneID="X47-c8-WHO">
             <objects>
-                <viewController id="IUP-ei-TzG" sceneMemberID="viewController">
+                <viewController id="IUP-ei-TzG" customClass="HistoryVC" customModule="Alkotester" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dfz-zb-EgG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.44241500680000001" green="0.80837997240000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="EAu-kk-734"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="Ueh-dg-LFl"/>
+                    <tabBarItem key="tabBarItem" title="История" id="Ueh-dg-LFl"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fn-YR-uJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
