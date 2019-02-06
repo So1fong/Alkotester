@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sv9-NF-1A8">
-                                <rect key="frame" x="0.0" y="54" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Выберите ваш пол:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-Sc-C8F">
@@ -56,6 +56,11 @@
                         <viewLayoutGuide key="safeArea" id="Lgg-Ab-odb"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Настройки" image="Settings" selectedImage="Settings" id="xbc-AP-7Dg"/>
+                    <connections>
+                        <outlet property="genderPicker" destination="Sv9-NF-1A8" id="jAp-nQ-NQe"/>
+                        <outlet property="heightPicker" destination="J83-jG-qm0" id="vkN-Sk-HVW"/>
+                        <outlet property="weightPicker" destination="egb-he-7uS" id="4jl-eF-2vz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="898-79-ohp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
