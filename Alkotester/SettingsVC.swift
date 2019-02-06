@@ -36,6 +36,9 @@ class SettingsVC: UIViewController
         setWeightPickerData()
         weightPicker.delegate = self
         weightPicker.dataSource = self
+        //выбрать по умолчанию значения: рост 170 см, вес 60 кг
+        heightPicker.selectRow(30, inComponent: 0, animated: false)
+        weightPicker.selectRow(30, inComponent: 0, animated: false)
     }
     
     func setHeightPickerData()
@@ -55,10 +58,12 @@ class SettingsVC: UIViewController
     }
 
     
-    // MARK: - Расширение
+
 
 }
 
+
+// MARK: - Расширение
 extension SettingsVC: UIPickerViewDelegate, UIPickerViewDataSource
 {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int
