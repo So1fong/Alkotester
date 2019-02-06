@@ -20,7 +20,7 @@
                         <color key="backgroundColor" red="0.95017202079384677" green="0.19047899677354463" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Lgg-Ab-odb"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Настройки" id="xbc-AP-7Dg"/>
+                    <tabBarItem key="tabBarItem" title="Настройки" image="Settings" selectedImage="Settings" id="xbc-AP-7Dg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="898-79-ohp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -36,7 +36,7 @@
                         <color key="backgroundColor" red="0.66666668650000005" green="0.061913310780000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="nhb-hZ-Ayl"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ваше состояние" id="j8N-KM-el4"/>
+                    <tabBarItem key="tabBarItem" title="Ваше состояние" image="State" selectedImage="State" id="j8N-KM-el4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meA-L0-V5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,7 +52,7 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Nnh-dp-E2b"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Добавить" id="d6m-5T-KXG"/>
+                    <tabBarItem key="tabBarItem" title="Добавить" image="Add" selectedImage="Add" id="d6m-5T-KXG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXR-kL-U7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" red="0.44241500680000001" green="0.80837997240000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="EAu-kk-734"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="История" id="Ueh-dg-LFl"/>
+                    <tabBarItem key="tabBarItem" title="История" image="History" selectedImage="History" id="Ueh-dg-LFl"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fn-YR-uJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,7 +81,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fep-GL-LfZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="IUP-ei-TzG" kind="relationship" relationship="viewControllers" id="StG-df-Oxe"/>
@@ -95,4 +94,10 @@
             <point key="canvasLocation" x="-463" y="-56"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Add" width="30" height="30"/>
+        <image name="History" width="24" height="28"/>
+        <image name="Settings" width="28" height="28"/>
+        <image name="State" width="30" height="30"/>
+    </resources>
 </document>
