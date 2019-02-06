@@ -15,7 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        print(launchedBefore)
+        if let tabBarController = self.window?.rootViewController as? UITabBarController
+        {
+            if launchedBefore
+            {
+                print("Not First launch")
+                tabBarController.selectedIndex = 0
+            }
+            else
+            {
+                print("First launch")
+                UserDefaults.standard.set(true, forKey: "launchedBefore")
+                tabBarController.selectedIndex = 3
+            }
+        }
         return true
     }
 
