@@ -16,11 +16,13 @@ class SettingsVC: UIViewController
     var genderPickerData = ["Мужской", "Женский"]
     var heightPickerData: [String] = []
     var weightPickerData: [String] = []
+    //var indexedItem: Int
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         initializePickers()
+        loadSettings()
 
     }
     
@@ -37,7 +39,7 @@ class SettingsVC: UIViewController
         weightPicker.delegate = self
         weightPicker.dataSource = self
         //выбрать по умолчанию значения: рост 170 см, вес 60 кг
-        heightPicker.selectRow(30, inComponent: 0, animated: false)
+
         weightPicker.selectRow(30, inComponent: 0, animated: false)
     }
     
@@ -57,7 +59,31 @@ class SettingsVC: UIViewController
         }
     }
 
-    
+    func loadSettings()
+    {
+        /*
+        if let selectedCurrencyInGenderPicker = UserDefaults.standard.string(forKey: "selectedCurrencyInGenderPicker")
+        {
+            switch selectedCurrencyInGenderPicker
+            {
+            case "Мужской":
+                genderPicker.selectRow(0, inComponent: 0, animated: false)
+            case "Женский":
+                genderPicker.selectRow(1, inComponent: 0, animated: false)
+            default:
+                break
+            }
+        }
+        if let selectedCurrencyInHeightPicker = UserDefaults.standard.integer(forKey: "selectedCurrencyInHeightPicker")
+        {
+            heightPicker.selectRow(selectedCurrencyInHeightPicker, inComponent: 0, animated: false)
+        }
+        else
+        {
+            heightPicker.selectRow(30, inComponent: 0, animated: false)
+        }
+ */
+    }
 
 
 }
@@ -100,4 +126,21 @@ extension SettingsVC: UIPickerViewDelegate, UIPickerViewDataSource
             return "0"
         }
     }
+    
+     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+     {
+        switch pickerView
+        {
+        case genderPicker:
+            UserDefaults.standard.set(row, forKey: "selectedCurrencyInGenderPicker")
+        case heightPicker:
+            //indexedItem = Int(heightPickerData[row])
+            UserDefaults.standard.set(row, forKey: "selectedCurrencyInHeightPicker")
+        case weightPicker:
+            //indexedItem = Int(weightPickerData[row])
+            UserDefaults.standard.set(row, forKey: "selectedCurrencyInWeightPicker")
+        default:
+            break
+        }
+     }
 }
