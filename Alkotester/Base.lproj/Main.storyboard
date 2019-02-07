@@ -73,10 +73,30 @@
                     <view key="view" contentMode="scaleToFill" id="ITa-kn-PRy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.66666668650000005" green="0.061913310780000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0c-to-j6E">
+                                <rect key="frame" x="225" y="439" width="62" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.66666668650000005" green="0.061913310780000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="64"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.44241500680000001" green="0.80837997240000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="Jjg-BZ-kUX" eventType="touchUpInside" id="ydx-Rh-VfY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nhb-hZ-Ayl"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ваше состояние" image="State" selectedImage="State" id="j8N-KM-el4"/>
+                    <connections>
+                        <outlet property="addButton" destination="h0c-to-j6E" id="rr4-a2-r4x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meA-L0-V5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,7 +156,7 @@
     </scenes>
     <resources>
         <image name="Add" width="30" height="30"/>
-        <image name="History" width="24" height="28"/>
+        <image name="History" width="30" height="30"/>
         <image name="Settings" width="32" height="32"/>
         <image name="State" width="30" height="30"/>
     </resources>

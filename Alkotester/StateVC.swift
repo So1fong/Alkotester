@@ -8,23 +8,37 @@
 
 import UIKit
 
-class StateVC: UIViewController {
+class StateVC: UIViewController
+{
 
-    override func viewDidLoad() {
+    @IBOutlet weak var addButton: UIButton!
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        customizeAddButton()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func customizeAddButton()
+    {
+        addButton.layer.masksToBounds = false
+        addButton.layer.shadowColor = UIColor.black.cgColor
+        addButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        addButton.layer.shadowRadius = 5
+        addButton.layer.shadowOpacity = 1.0
+        addButton.layer.cornerRadius = addButton.bounds.width / 2
     }
-    */
+
+    @IBAction func addButtonTapped(_ sender: UIButton)
+    {
+        UIView.animate(withDuration: 0.2, animations: { self.addButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)},
+                       completion:
+            { _ in UIView.animate(withDuration: 0.2, animations:
+                {
+                    self.addButton.transform = CGAffineTransform.identity}
+                                  )
+            }
+                    )
+    }
+    // MARK: - Navigation
 
 }

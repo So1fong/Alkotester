@@ -40,7 +40,7 @@ class SettingsVC: UIViewController
         weightPicker.delegate = self
         weightPicker.dataSource = self
         //выбрать по умолчанию значения: рост 170 см, вес 60 кг
-
+        heightPicker.selectRow(30, inComponent: 0, animated: false)
         weightPicker.selectRow(30, inComponent: 0, animated: false)
     }
     
