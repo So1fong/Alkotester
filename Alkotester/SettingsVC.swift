@@ -65,14 +65,11 @@ class SettingsVC: UIViewController
         var row = 0
         if let gender = UserDefaults.standard.string(forKey: "selectedCurrencyInGenderPicker")
         {
-            print("row value " + gender)
             switch gender
             {
             case "Мужской":
-                print("case 0")
                 genderPicker.selectRow(0, inComponent: 0, animated: false)
             case "Женский":
-                print("case 1")
                 genderPicker.selectRow(1, inComponent: 0, animated: false)
             default:
                 break
@@ -132,14 +129,11 @@ extension SettingsVC: UIPickerViewDelegate, UIPickerViewDataSource
         {
         case genderPicker:
                 let temp = String(genderPickerData[row])
-                print("selected row gender " + genderPickerData[row] + " row " + String(row))
                 indexedGender = temp
-                print("indexedGender " + indexedGender)
                 UserDefaults.standard.set(indexedGender, forKey: "selectedCurrencyInGenderPicker")
         case heightPicker:
             if let temp = Int(heightPickerData[row])
             {
-                print(heightPickerData[row])
                 indexedItem = temp
                 UserDefaults.standard.set(row, forKey: "selectedCurrencyInHeightPicker")
             }
