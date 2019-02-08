@@ -16,6 +16,13 @@ class StateVC: UIViewController
     {
         super.viewDidLoad()
         customizeAddButton()
+        hideNavigationBar()
+    }
+    
+    func hideNavigationBar()
+    {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     func customizeAddButton()

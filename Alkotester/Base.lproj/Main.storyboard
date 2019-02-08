@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="898-79-ohp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-849.375" y="733.09859154929575"/>
+            <point key="canvasLocation" x="-463" y="696"/>
         </scene>
         <!--Ваше состояние-->
         <scene sceneID="rko-qu-qfi">
@@ -87,6 +87,7 @@
                                 </state>
                                 <connections>
                                     <action selector="addButtonTapped:" destination="Jjg-BZ-kUX" eventType="touchUpInside" id="ydx-Rh-VfY"/>
+                                    <segue destination="uSy-e2-k4d" kind="show" id="jWf-ml-dtV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -94,29 +95,57 @@
                         <viewLayoutGuide key="safeArea" id="nhb-hZ-Ayl"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ваше состояние" image="State" selectedImage="State" id="j8N-KM-el4"/>
+                    <navigationItem key="navigationItem" id="lyw-oW-YWT">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="1xo-m1-PCA"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="h0c-to-j6E" id="rr4-a2-r4x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meA-L0-V5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-125.625" y="734.15492957746483"/>
+            <point key="canvasLocation" x="1307" y="295"/>
         </scene>
-        <!--Добавить-->
-        <scene sceneID="mub-4P-45i">
+        <!--Alco ListVC-->
+        <scene sceneID="NXp-dk-qcD">
             <objects>
-                <viewController id="2sX-Eo-lwQ" customClass="AddVC" customModule="Alkotester" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LQo-H0-aNY">
+                <viewController id="uSy-e2-k4d" customClass="AlcoListVC" customModule="Alkotester" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ma1-8T-jYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Nnh-dp-E2b"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Список алкоголя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFy-w6-exI">
+                                <rect key="frame" x="16" y="178" width="136" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Ey4-kT-4mW"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Добавить" image="Add" selectedImage="Add" id="d6m-5T-KXG"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KXR-kL-U7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T9T-QI-NHy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="549" y="282"/>
+            <point key="canvasLocation" x="2233" y="295"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="bVP-HY-u7P">
+            <objects>
+                <navigationController id="3IV-az-2vB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="QaF-E7-xzh"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Vd-PT-8dp">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Jjg-BZ-kUX" kind="relationship" relationship="rootViewController" id="9QU-QW-FRB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2tp-Q7-x7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="295"/>
         </scene>
         <!--История-->
         <scene sceneID="X47-c8-WHO">
@@ -144,8 +173,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="IUP-ei-TzG" kind="relationship" relationship="viewControllers" id="StG-df-Oxe"/>
-                        <segue destination="2sX-Eo-lwQ" kind="relationship" relationship="viewControllers" id="EA9-E4-2Mj"/>
-                        <segue destination="Jjg-BZ-kUX" kind="relationship" relationship="viewControllers" id="Kfy-sJ-Mue"/>
+                        <segue destination="3IV-az-2vB" kind="relationship" relationship="viewControllers" id="Dfz-ZE-B3Z"/>
                         <segue destination="lYE-nA-dQl" kind="relationship" relationship="viewControllers" id="eXd-iA-aMf"/>
                     </connections>
                 </tabBarController>
@@ -155,7 +183,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Add" width="30" height="30"/>
         <image name="History" width="30" height="30"/>
         <image name="Settings" width="32" height="32"/>
         <image name="State" width="30" height="30"/>
