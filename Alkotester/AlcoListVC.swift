@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - Объявление структуры
 struct Drink
 {
     var name: String
@@ -37,6 +38,7 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.rowHeight = 50
     }
     
+    // MARK: - Заполнение массива структур
     func fillArrays()
     {
         drinkList.append(Drink(name: "Пиво", volume: 4.0, quantity: 500))
@@ -60,7 +62,7 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         drinkList.append(Drink(name: "Эль", volume: 5.0, quantity: 500))
     }
     
-    // MARK: - Navigation
+    // MARK: - Логика ячеек таблицы
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return (drinkList.count)

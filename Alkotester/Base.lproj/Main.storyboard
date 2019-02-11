@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meA-L0-V5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1307" y="295"/>
+            <point key="canvasLocation" x="1403" y="295"/>
         </scene>
         <!--Alco ListVC-->
         <scene sceneID="NXp-dk-qcD">
@@ -150,6 +150,7 @@
                                             <outlet property="alcoholQuantityLabel" destination="XHl-T4-Xo8" id="JdB-rQ-szh"/>
                                             <outlet property="alcoholVolumeLabel" destination="H1W-jI-53a" id="CaD-Qi-msf"/>
                                             <outlet property="drinkNameLabel" destination="eEw-21-SA2" id="4Zr-Tw-JvY"/>
+                                            <segue destination="oZJ-Yq-5hH" kind="show" id="0Y7-a6-aEE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -158,6 +159,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ey4-kT-4mW"/>
                     </view>
+                    <navigationItem key="navigationItem" id="akD-Ci-9rp">
+                        <barButtonItem key="backBarButtonItem" title="К списку напитков" id="s1f-Yw-xLO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="WsV-xE-do1" id="rIb-xf-4at"/>
                     </connections>
@@ -165,6 +169,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T9T-QI-NHy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2231.25" y="294.71830985915494"/>
+        </scene>
+        <!--Add DrinkVC-->
+        <scene sceneID="nz6-L4-FQl">
+            <objects>
+                <viewController id="oZJ-Yq-5hH" customClass="AddDrinkVC" customModule="Alkotester" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X3f-bv-Wtr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jIO-CS-Nlz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9lo-5p-JZ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3098" y="295"/>
         </scene>
         <!--Item-->
         <scene sceneID="bVP-HY-u7P">
