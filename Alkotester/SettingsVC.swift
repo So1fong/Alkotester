@@ -8,6 +8,10 @@
 
 import UIKit
 
+var settingsDrinkNameArray: [String] = []
+var settingsDrinkVolumeArray: [Double] = []
+var settingsDrinkQuantityArray: [Int] = []
+
 class SettingsVC: UIViewController
 {
     @IBOutlet weak var genderPicker: UIPickerView!

@@ -9,18 +9,37 @@
 import UIKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if let tabBarController = self.window?.rootViewController as? UITabBarController
         {
             if launchedBefore
             {
                 tabBarController.selectedIndex = 0
+                // подумать, как сделать
+                if let _ = UserDefaults.standard.array(forKey: "settingsDrinkNameArray")
+                {
+                    drinkNameArray += UserDefaults.standard.array(forKey: "settingsDrinkNameArray") as! [String]
+                }
+                if let _ = UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")
+                {
+                    drinkVolumeArray += UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray") as! [Double]
+                }
+                if let _ = UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")
+                {
+                    drinkQuantityArray += UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray") as! [Int]
+                }
+                print("ON LAUNCH")
+                print(drinkNameArray)
+                print(drinkVolumeArray)
+                print(drinkQuantityArray)
             }
             else
             {

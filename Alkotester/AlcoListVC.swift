@@ -12,7 +12,7 @@ import UIKit
 var drinkList: [Drink] = []
 var myIndex = 0
 
-struct Drink
+struct Drink: Codable
 {
     var name: String
     var volume: Double
@@ -26,6 +26,11 @@ struct Drink
     }
 }
 
+func save(_ drinks: [Drink])
+{
+    let data = drinks.map { try? JSONEncoder().encode($0) }
+    UserDefaults.standard.set(data, forKey: "historyDrinkList")
+}
 
 class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
