@@ -8,6 +8,21 @@
 
 import UIKit
 
+struct Drink
+{
+    var name: String
+    var volume: String
+    var quantity: String
+    
+    init(name: String, volume: String, quantity: String)
+    {
+        self.name = name
+        self.volume = volume
+        self.quantity = quantity
+    }
+}
+
+
 class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
@@ -21,7 +36,11 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         fillArrays()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 60
         print(alcoVolumeArray.count, alcoArray.count, alcoQuantityArray.count)
+        var beer = Drink(name: "beer", volume: "4", quantity: "350")
+        print(beer)
+        
     }
     
     func fillArrays()
@@ -45,8 +64,9 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         print(alcoArray[indexPath.row])
         cell.drinkNameLabel.text = alcoArray[indexPath.row]
-        cell.alcoholQuantityLabel.text = alcoQuantityArray[indexPath.row]
-        cell.alcoholVolumeLabel.text = alcoVolumeArray[indexPath.row]
+        cell.alcoholQuantityLabel.text = alcoQuantityArray[indexPath.row] + " мл"
+        cell.alcoholQuantityLabel.textColor = UIColor.red
+        cell.alcoholVolumeLabel.text = alcoVolumeArray[indexPath.row] + "%"
         return cell
     }
     
