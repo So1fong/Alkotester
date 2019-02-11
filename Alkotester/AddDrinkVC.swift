@@ -34,7 +34,14 @@ class AddDrinkVC: UIViewController
     
     @IBAction func saveButtonTapped(_ sender: UIButton)
     {
-        navigationController?.popViewController(animated: true)
+        if let quantity = Int(quantityTextField.text!)
+        {
+            print("ok")
+        }
+        let historyList = UserDefaults.standard.array(forKey: "historyList")
+        var tempDrink: Drink
+        //tempDrink = Drink(name: drinkList[myIndex].name, volume: Double(volumeTextField.text), quantity: Int(quantityTextField.text))
+        //print(tempDrink)
     }
     
 }

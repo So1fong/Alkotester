@@ -59,7 +59,7 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         drinkList.append(Drink(name: "Текила", volume: 40.0, quantity: 40))
         drinkList.append(Drink(name: "Мартини", volume: 15.0, quantity: 200))
         drinkList.append(Drink(name: "Настойка", volume: 20.0, quantity: 40))
-        drinkList.append(Drink(name: "Алкогольный", volume: 6.0, quantity: 200))
+        drinkList.append(Drink(name: "Алкогольный коктейль", volume: 6.0, quantity: 200))
         drinkList.append(Drink(name: "Сидр", volume: 5.0, quantity: 500))
         drinkList.append(Drink(name: "Эль", volume: 5.0, quantity: 500))
     }
@@ -78,8 +78,18 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         cell.drinkNameLabel.text = drinkList[indexPath.row].name
         cell.alcoholQuantityLabel.text = String(drinkList[indexPath.row].quantity) + " мл"
-        cell.alcoholQuantityLabel.textColor = UIColor.red
         cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].volume) + "%"
+        switch drinkList[indexPath.row].volume
+        {
+        case 0..<10:
+            cell.alcoholVolumeLabel.textColor = UIColor.green
+        case 10..<20:
+            cell.alcoholVolumeLabel.textColor = UIColor.yellow
+        case 20...100:
+            cell.alcoholVolumeLabel.textColor = UIColor.red
+        default:
+            break
+        }
         return cell
     }
     
