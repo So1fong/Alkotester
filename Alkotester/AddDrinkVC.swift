@@ -18,6 +18,8 @@ class AddDrinkVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        quantityTextField.text = String(drinkList[myIndex].quantity)
+        volumeTextField.text = String(drinkList[myIndex].volume)
 
     }
     

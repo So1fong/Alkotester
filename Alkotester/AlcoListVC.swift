@@ -9,6 +9,9 @@
 import UIKit
 
 // MARK: - Объявление структуры
+var drinkList: [Drink] = []
+var myIndex = 0
+
 struct Drink
 {
     var name: String
@@ -27,8 +30,6 @@ struct Drink
 class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
-    var drinkList: [Drink] = []
-    var myIndex = 0
     
     override func viewDidLoad()
     {
