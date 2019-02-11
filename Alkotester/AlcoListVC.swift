@@ -11,10 +11,10 @@ import UIKit
 struct Drink
 {
     var name: String
-    var volume: String
-    var quantity: String
+    var volume: Double
+    var quantity: Int
     
-    init(name: String, volume: String, quantity: String)
+    init(name: String, volume: Double, quantity: Int)
     {
         self.name = name
         self.volume = volume
@@ -26,9 +26,7 @@ struct Drink
 class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
-    var alcoArray: [String] = []
-    var alcoVolumeArray: [String] = []
-    var alcoQuantityArray: [String] = []
+    var drinkList: [Drink] = []
     
     override func viewDidLoad()
     {
@@ -36,24 +34,36 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         fillArrays()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 60
-        print(alcoVolumeArray.count, alcoArray.count, alcoQuantityArray.count)
-        var beer = Drink(name: "beer", volume: "4", quantity: "350")
-        print(beer)
-        
+        tableView.rowHeight = 50
     }
     
     func fillArrays()
     {
-        alcoArray = ["Пиво", "Шампанское", "Вино", "Водка", "Виски", "Ром", "Джин", "Коньяк", "Ликер", "Сакэ", "Бренди", "Абсент", "Самбука", "Текила", "Мартини", "Настойка", "Алкогольный коктейль", "Сидр", "Эль"]
-        alcoVolumeArray = ["4.0", "5.0", "12.0", "40.0", "40.0", "40.0", "40.0", "40.0", "40.0", "20.0", "40.0", "70.0", "40.0", "40.0", "15.0", "20.0", "6.0", "5.0", "5.0"]
-        alcoQuantityArray = ["500", "200", "200", "40", "40", "40", "40", "40", "40", "40", "40", "40", "40", "40", "200", "40", "200", "500", "500"]
+        drinkList.append(Drink(name: "Пиво", volume: 4.0, quantity: 500))
+        drinkList.append(Drink(name: "Шампанское", volume: 5.0, quantity: 200))
+        drinkList.append(Drink(name: "Вино", volume: 12.0, quantity: 200))
+        drinkList.append(Drink(name: "Водка", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Виски", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Ром", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Джин", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Коньяк", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Ликер", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Сакэ", volume: 20.0, quantity: 40))
+        drinkList.append(Drink(name: "Бренди", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Абсент", volume: 70.0, quantity: 40))
+        drinkList.append(Drink(name: "Самбука", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Текила", volume: 40.0, quantity: 40))
+        drinkList.append(Drink(name: "Мартини", volume: 15.0, quantity: 200))
+        drinkList.append(Drink(name: "Настойка", volume: 20.0, quantity: 40))
+        drinkList.append(Drink(name: "Алкогольный", volume: 6.0, quantity: 200))
+        drinkList.append(Drink(name: "Сидр", volume: 5.0, quantity: 500))
+        drinkList.append(Drink(name: "Эль", volume: 5.0, quantity: 500))
     }
     
     // MARK: - Navigation
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return (alcoArray.count)
+        return (drinkList.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -62,11 +72,10 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         {
             fatalError("Could not dequeue cell")
         }
-        print(alcoArray[indexPath.row])
-        cell.drinkNameLabel.text = alcoArray[indexPath.row]
-        cell.alcoholQuantityLabel.text = alcoQuantityArray[indexPath.row] + " мл"
+        cell.drinkNameLabel.text = drinkList[indexPath.row].name
+        cell.alcoholQuantityLabel.text = String(drinkList[indexPath.row].quantity) + " мл"
         cell.alcoholQuantityLabel.textColor = UIColor.red
-        cell.alcoholVolumeLabel.text = alcoVolumeArray[indexPath.row] + "%"
+        cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].volume) + "%"
         return cell
     }
     
