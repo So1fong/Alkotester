@@ -38,6 +38,14 @@ class AddDrinkVC: UIViewController
         {
             print("ok")
         }
+        // проверка введенного значения крепости напитка
+        if let volume = Double(volumeTextField.text!)
+        {
+            if (volume < 0 || volume > 100)
+            {
+                volumeTextField.text = ""
+            }
+        }
         let historyList = UserDefaults.standard.array(forKey: "historyList")
         var tempDrink: Drink
         //tempDrink = Drink(name: drinkList[myIndex].name, volume: Double(volumeTextField.text), quantity: Int(quantityTextField.text))

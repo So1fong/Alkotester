@@ -85,7 +85,9 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell.alcoholVolumeLabel.textColor = UIColor.green
         case 10..<20:
             cell.alcoholVolumeLabel.textColor = UIColor.yellow
-        case 20...100:
+        case 20..<30:
+            cell.alcoholVolumeLabel.textColor = UIColor.orange
+        case 30...100:
             cell.alcoholVolumeLabel.textColor = UIColor.red
         default:
             break
