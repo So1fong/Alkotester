@@ -28,6 +28,7 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
     var drinkList: [Drink] = []
+    var myIndex = 0
     
     override func viewDidLoad()
     {
@@ -79,6 +80,11 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.alcoholQuantityLabel.textColor = UIColor.red
         cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].volume) + "%"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        myIndex = indexPath.row
     }
     
     @objc func cancelTapped()
