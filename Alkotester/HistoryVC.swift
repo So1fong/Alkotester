@@ -43,10 +43,11 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, A
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
-        if editingStyle == .delete
+        let delete = UITableViewRowAction(style: .destructive, title: "Удалить", handler:
         {
+            (action, indexPath) in
             drinkNameArray.remove(at: indexPath.row)
             drinkQuantityArray.remove(at: indexPath.row)
             drinkVolumeArray.remove(at: indexPath.row)
@@ -54,9 +55,9 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, A
             UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
             UserDefaults.standard.set(drinkQuantityArray, forKey: "settingsDrinkQuantityArray")
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+        })
+        return [delete]
     }
-    
     
     @objc func reloadTableView()
     {
