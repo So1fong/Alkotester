@@ -8,8 +8,11 @@
 
 import UIKit
 
-class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
+class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDrinkDelegate
 {
+    @IBOutlet weak var tableView: UITableView!
+    var addDrink = AddDrinkVC()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return drinkNameArray.count
@@ -40,15 +43,38 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
+            drinkNameArray.remove(at: indexPath.row)
+            drinkQuantityArray.remove(at: indexPath.row)
+            drinkVolumeArray.remove(at: indexPath.row)
+            UserDefaults.standard.set(drinkNameArray, forKey: "settingsDrinkNameArray")
+            UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
+            UserDefaults.standard.set(drinkQuantityArray, forKey: "settingsDrinkQuantityArray")
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    
+    @objc func reloadTableView()
+    {
+        DispatchQueue.main.async
+        {
+            self.tableView.reloadData()
+            print("делегат работает")
+        }
 
-    @IBOutlet weak var tableView: UITableView!
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 50
-        tableView.reloadData()
+        addDrink.delegate = self
     }
     
 
