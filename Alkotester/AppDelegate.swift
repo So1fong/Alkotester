@@ -24,17 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             {
                 tabBarController.selectedIndex = 0
                 // подумать, как сделать
+                print("SETTINGS ON LAUNCH")
+                print(UserDefaults.standard.array(forKey: "settingsDrinkNameArray"), UserDefaults.standard.array(forKey: "settingsDrinkNameArray")?.count)
+                print(UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray"), UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")?.count)
+                print(UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray"), UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")?.count)
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkNameArray")
                 {
-                    drinkNameArray += UserDefaults.standard.array(forKey: "settingsDrinkNameArray") as! [String]
+                    drinkNameArray = UserDefaults.standard.object(forKey: "settingsDrinkNameArray") as? [String] ?? [String]()
                 }
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")
                 {
-                    drinkVolumeArray += UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray") as! [Double]
+                    drinkVolumeArray = UserDefaults.standard.object(forKey: "settingsDrinkVolumeArray") as? [Double] ?? [Double]()
                 }
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")
                 {
-                    drinkQuantityArray += UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray") as! [Int]
+                    drinkQuantityArray = UserDefaults.standard.object(forKey: "settingsDrinkQuantityArray") as? [Int] ?? [Int]()
                 }
                 print("ON LAUNCH")
                 print(drinkNameArray, drinkNameArray.count)
@@ -70,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
+        UserDefaults.standard.synchronize()
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 

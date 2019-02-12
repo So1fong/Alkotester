@@ -12,15 +12,8 @@ var drinkNameArray: [String] = []
 var drinkVolumeArray: [Double] = []
 var drinkQuantityArray: [Int] = []
 
-protocol AddDrinkDelegate
-{
-    func reloadTableView()
-}
-
 class AddDrinkVC: UIViewController
 {
-    
-    var delegate: AddDrinkDelegate?
     @IBOutlet weak var hungerSlider: UISlider!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var volumeTextField: UITextField!
@@ -32,19 +25,7 @@ class AddDrinkVC: UIViewController
         volumeTextField.text = String(drinkList[myIndex].volume)
     }
     
-
     // MARK: - Navigation
-
-    @IBAction func resetSettingsButtonTapped(_ sender: UIButton)
-    {
-        DispatchQueue.main.async
-        {
-            UserDefaults.standard.removeObject(forKey: "settingsDrinkNameArray")
-            UserDefaults.standard.removeObject(forKey: "settingsDrinkVolumeArray")
-            UserDefaults.standard.removeObject(forKey: "settingsDrinkQuantityArray")
-        }
-    }
-    
     @IBAction func cancelButtonTapped(_ sender: UIButton)
     {
         navigationController?.popViewController(animated: true)
@@ -84,15 +65,16 @@ class AddDrinkVC: UIViewController
                     UserDefaults.standard.set(drinkNameArray, forKey: "settingsDrinkNameArray")
                     UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
                     UserDefaults.standard.set(drinkQuantityArray, forKey: "settingsDrinkQuantityArray")
+                    //UserDefaults.standard.array(forKey: <#T##String#>)
                     //print("ДО ДЕЛЕГАТА")
-                    self.delegate?.reloadTableView()
+
                     //print("ПОСЛЕ ДЕЛЕГАТА")
 
                     print("USER DEFAULTS AFTER ADDING NEW DRINK")
                     print(UserDefaults.standard.array(forKey: "settingsDrinkNameArray"), UserDefaults.standard.array(forKey: "settingsDrinkNameArray")?.count)
                     print(UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray"), UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")?.count)
                     print(UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray"), UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")?.count)
-                    //self.delegate?.reloadTableView()
+                    navigationController?.popViewController(animated: true)
 
                 }
             }

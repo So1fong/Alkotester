@@ -8,10 +8,9 @@
 
 import UIKit
 
-class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AddDrinkDelegate
+class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
-    var addDrink = AddDrinkVC()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -66,26 +65,18 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, A
         return [delete]
     }
     
-    @objc func reloadTableView()
-    {
-        DispatchQueue.main.async
-        {
-            self.tableView.reloadData()
-            print("делегат работает")
-        }
-
-    }
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 50
-        addDrink.delegate = self
     }
     
-
+    override func viewDidAppear(_ animated: Bool)
+    {
+        tableView.reloadData()
+    }
 
     // MARK: - Navigation
 
