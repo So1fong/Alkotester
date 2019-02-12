@@ -15,6 +15,7 @@
 		D81072C0220B794E0089E0A9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81072BF220B794E0089E0A9 /* SettingsVC.swift */; };
 		D81072C2220B79620089E0A9 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81072C1220B79620089E0A9 /* HistoryVC.swift */; };
 		D81072C4220B79720089E0A9 /* StateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81072C3220B79720089E0A9 /* StateVC.swift */; };
+		D854FCEB2212C82200597A20 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854FCEA2212C82200597A20 /* HistoryTableViewCell.swift */; };
 		D8742E52220DCA93009BC513 /* AlcoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8742E51220DCA93009BC513 /* AlcoListVC.swift */; };
 		D87670112211C77A00E6212A /* AddDrinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87670102211C77A00E6212A /* AddDrinkVC.swift */; };
 		D8ECAEE6220E36F5001EA144 /* AlcoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ECAEE5220E36F5001EA144 /* AlcoTableViewCell.swift */; };
@@ -31,6 +32,7 @@
 		D81072BF220B794E0089E0A9 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		D81072C1220B79620089E0A9 /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		D81072C3220B79720089E0A9 /* StateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateVC.swift; sourceTree = "<group>"; };
+		D854FCEA2212C82200597A20 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		D8742E51220DCA93009BC513 /* AlcoListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoListVC.swift; sourceTree = "<group>"; };
 		D87670102211C77A00E6212A /* AddDrinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkVC.swift; sourceTree = "<group>"; };
 		D8ECAEE5220E36F5001EA144 /* AlcoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoTableViewCell.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				D81072AD220B74500089E0A9 /* ViewController.swift */,
 				D8742E51220DCA93009BC513 /* AlcoListVC.swift */,
 				D8ECAEE5220E36F5001EA144 /* AlcoTableViewCell.swift */,
+				D854FCEA2212C82200597A20 /* HistoryTableViewCell.swift */,
 				D81072AF220B74500089E0A9 /* Main.storyboard */,
 				D81072B2220B74520089E0A9 /* Assets.xcassets */,
 				D81072B4220B74520089E0A9 /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D854FCEB2212C82200597A20 /* HistoryTableViewCell.swift in Sources */,
 				D81072C4220B79720089E0A9 /* StateVC.swift in Sources */,
 				D81072C2220B79620089E0A9 /* HistoryVC.swift in Sources */,
 				D81072C0220B794E0089E0A9 /* SettingsVC.swift in Sources */,

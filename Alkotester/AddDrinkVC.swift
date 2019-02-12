@@ -38,7 +38,6 @@ class AddDrinkVC: UIViewController
             UserDefaults.standard.removeObject(forKey: "settingsDrinkVolumeArray")
             UserDefaults.standard.removeObject(forKey: "settingsDrinkQuantityArray")
         }
-
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton)
