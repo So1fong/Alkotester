@@ -37,14 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     drinkQuantityArray += UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray") as! [Int]
                 }
                 print("ON LAUNCH")
-                print(drinkNameArray)
-                print(drinkVolumeArray)
-                print(drinkQuantityArray)
+                print(drinkNameArray, drinkNameArray.count)
+                print(drinkVolumeArray, drinkVolumeArray.count)
+                print(drinkQuantityArray, drinkQuantityArray.count)
             }
             else
             {
+                tabBarController.selectedIndex = 2
                 UserDefaults.standard.set(true, forKey: "launchedBefore")
-                tabBarController.selectedIndex = 3
+
             }
         }
         return true
