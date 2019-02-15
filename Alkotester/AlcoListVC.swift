@@ -69,14 +69,14 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         drinkList.append(Drink(name: "Алкогольный коктейль", minVolume: 4, quantity: 200, maxVolume: 12)) //4-12
         drinkList.append(Drink(name: "Сидр", minVolume: 2, quantity: 500, maxVolume: 7)) //2-7
         drinkList.append(Drink(name: "Эль", minVolume: 5, quantity: 500, maxVolume: 7))
-        drinkList.append(Drink(name: "Наливка", minVolume: 18, quantity: 500, maxVolume: 20))
-        drinkList.append(Drink(name: "Чача", minVolume: 45, quantity: 500, maxVolume: 60))
-        drinkList.append(Drink(name: "Бурбон", minVolume: 40, quantity: 500, maxVolume: 50))
-        drinkList.append(Drink(name: "Самогон", minVolume: 40, quantity: 500, maxVolume: nil))
-        drinkList.append(Drink(name: "Портвейн", minVolume: 17, quantity: 500, maxVolume: 20))
-        drinkList.append(Drink(name: "Вермут", minVolume: 16, quantity: 500, maxVolume: 18))
-        drinkList.append(Drink(name: "Ликер", minVolume: 15, quantity: 500, maxVolume: 40))
-        drinkList.append(Drink(name: "Лимончелло", minVolume: 30, quantity: 500, maxVolume: 43))
+        drinkList.append(Drink(name: "Наливка", minVolume: 18, quantity: 50, maxVolume: 20))
+        drinkList.append(Drink(name: "Чача", minVolume: 45, quantity: 50, maxVolume: 60))
+        drinkList.append(Drink(name: "Бурбон", minVolume: 40, quantity: 50, maxVolume: 50))
+        drinkList.append(Drink(name: "Самогон", minVolume: 40, quantity: 50, maxVolume: nil))
+        drinkList.append(Drink(name: "Портвейн", minVolume: 17, quantity: 100, maxVolume: 20))
+        drinkList.append(Drink(name: "Вермут", minVolume: 16, quantity: 100, maxVolume: 18))
+        drinkList.append(Drink(name: "Ликер", minVolume: 15, quantity: 50, maxVolume: 40))
+        drinkList.append(Drink(name: "Лимончелло", minVolume: 30, quantity: 50, maxVolume: 43))
     }
     
     // MARK: - Логика ячеек таблицы
@@ -93,7 +93,14 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         cell.drinkNameLabel.text = drinkList[indexPath.row].name
         cell.alcoholQuantityLabel.text = String(drinkList[indexPath.row].quantity) + " мл"
-        cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].minVolume) + "%"
+        if let maxVolume = drinkList[indexPath.row].maxVolume
+        {
+            cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].minVolume) + "-" + String(maxVolume) + "%"
+        }
+        else
+        {
+            cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].minVolume) + "%"
+        }
         switch drinkList[indexPath.row].minVolume
         {
         case 0..<10:
