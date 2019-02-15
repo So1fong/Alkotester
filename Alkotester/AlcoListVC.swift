@@ -48,8 +48,8 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // MARK: - Заполнение массива структур
     func fillArrays()
     {
-        drinkList.append(Drink(name: "Пиво", volume: 4.0, quantity: 500))
-        drinkList.append(Drink(name: "Шампанское", volume: 5.0, quantity: 200))
+        drinkList.append(Drink(name: "Пиво", volume: 5.4, quantity: 500))
+        drinkList.append(Drink(name: "Шампанское", volume: 13.0, quantity: 200))
         drinkList.append(Drink(name: "Вино", volume: 12.0, quantity: 200))
         drinkList.append(Drink(name: "Водка", volume: 40.0, quantity: 40))
         drinkList.append(Drink(name: "Виски", volume: 40.0, quantity: 40))
@@ -61,12 +61,12 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         drinkList.append(Drink(name: "Бренди", volume: 40.0, quantity: 40))
         drinkList.append(Drink(name: "Абсент", volume: 70.0, quantity: 40))
         drinkList.append(Drink(name: "Самбука", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Текила", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Мартини", volume: 15.0, quantity: 200))
+        drinkList.append(Drink(name: "Текила", volume: 38.0, quantity: 40))
+        drinkList.append(Drink(name: "Мартини", volume: 16.0, quantity: 200))
         drinkList.append(Drink(name: "Настойка", volume: 20.0, quantity: 40))
-        drinkList.append(Drink(name: "Алкогольный коктейль", volume: 6.0, quantity: 200))
-        drinkList.append(Drink(name: "Сидр", volume: 5.0, quantity: 500))
-        drinkList.append(Drink(name: "Эль", volume: 5.0, quantity: 500))
+        drinkList.append(Drink(name: "Алкогольный коктейль", volume: 8.7, quantity: 200))
+        drinkList.append(Drink(name: "Сидр", volume: 7.0, quantity: 500))
+        drinkList.append(Drink(name: "Эль", volume: 5.5, quantity: 500))
     }
     
     // MARK: - Логика ячеек таблицы
