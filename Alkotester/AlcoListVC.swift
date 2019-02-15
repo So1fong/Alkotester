@@ -15,14 +15,16 @@ var myIndex = 0
 struct Drink: Codable
 {
     var name: String
-    var volume: Double
+    var minVolume: Int
     var quantity: Int
+    var maxVolume: Int?
     
-    init(name: String, volume: Double, quantity: Int)
+    init(name: String, minVolume: Int, quantity: Int, maxVolume: Int?)
     {
         self.name = name
-        self.volume = volume
+        self.minVolume = minVolume
         self.quantity = quantity
+        self.maxVolume = maxVolume
     }
 }
 
@@ -48,25 +50,33 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // MARK: - Заполнение массива структур
     func fillArrays()
     {
-        drinkList.append(Drink(name: "Пиво", volume: 5.4, quantity: 500))
-        drinkList.append(Drink(name: "Шампанское", volume: 13.0, quantity: 200))
-        drinkList.append(Drink(name: "Вино", volume: 12.0, quantity: 200))
-        drinkList.append(Drink(name: "Водка", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Виски", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Ром", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Джин", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Коньяк", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Ликер", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Сакэ", volume: 20.0, quantity: 40))
-        drinkList.append(Drink(name: "Бренди", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Абсент", volume: 70.0, quantity: 40))
-        drinkList.append(Drink(name: "Самбука", volume: 40.0, quantity: 40))
-        drinkList.append(Drink(name: "Текила", volume: 38.0, quantity: 40))
-        drinkList.append(Drink(name: "Мартини", volume: 16.0, quantity: 200))
-        drinkList.append(Drink(name: "Настойка", volume: 20.0, quantity: 40))
-        drinkList.append(Drink(name: "Алкогольный коктейль", volume: 8.7, quantity: 200))
-        drinkList.append(Drink(name: "Сидр", volume: 7.0, quantity: 500))
-        drinkList.append(Drink(name: "Эль", volume: 5.5, quantity: 500))
+        drinkList.append(Drink(name: "Пиво", minVolume: 4, quantity: 500, maxVolume: 14)) //4-14
+        drinkList.append(Drink(name: "Шампанское", minVolume: 8, quantity: 200, maxVolume: 13)) //8-13
+        drinkList.append(Drink(name: "Вино", minVolume: 9, quantity: 200, maxVolume: 22)) //9-22
+        drinkList.append(Drink(name: "Водка", minVolume: 40, quantity: 40, maxVolume: nil)) //40
+        drinkList.append(Drink(name: "Виски", minVolume: 40, quantity: 40, maxVolume: 50)) //40-50
+        drinkList.append(Drink(name: "Ром", minVolume: 30, quantity: 40, maxVolume: 78)) //30-78
+        drinkList.append(Drink(name: "Джин", minVolume: 38, quantity: 40, maxVolume: 45)) //38-45
+        drinkList.append(Drink(name: "Коньяк", minVolume: 40, quantity: 40, maxVolume: nil))
+        drinkList.append(Drink(name: "Ликер", minVolume: 40, quantity: 40, maxVolume: nil))
+        drinkList.append(Drink(name: "Сакэ", minVolume: 15, quantity: 40, maxVolume: 20)) //15-20
+        drinkList.append(Drink(name: "Бренди", minVolume: 40, quantity: 40, maxVolume: nil))
+        drinkList.append(Drink(name: "Абсент", minVolume: 70, quantity: 40, maxVolume: 86)) //70-86
+        drinkList.append(Drink(name: "Самбука", minVolume: 38, quantity: 40, maxVolume: 42)) //38-42
+        drinkList.append(Drink(name: "Текила", minVolume: 35, quantity: 40, maxVolume: 55)) //35-55
+        drinkList.append(Drink(name: "Мартини", minVolume: 16, quantity: 200, maxVolume: nil))
+        drinkList.append(Drink(name: "Настойка", minVolume: 20, quantity: 45, maxVolume: nil))
+        drinkList.append(Drink(name: "Алкогольный коктейль", minVolume: 4, quantity: 200, maxVolume: 12)) //4-12
+        drinkList.append(Drink(name: "Сидр", minVolume: 2, quantity: 500, maxVolume: 7)) //2-7
+        drinkList.append(Drink(name: "Эль", minVolume: 5, quantity: 500, maxVolume: 7))
+        drinkList.append(Drink(name: "Наливка", minVolume: 18, quantity: 500, maxVolume: 20))
+        drinkList.append(Drink(name: "Чача", minVolume: 45, quantity: 500, maxVolume: 60))
+        drinkList.append(Drink(name: "Бурбон", minVolume: 40, quantity: 500, maxVolume: 50))
+        drinkList.append(Drink(name: "Самогон", minVolume: 40, quantity: 500, maxVolume: nil))
+        drinkList.append(Drink(name: "Портвейн", minVolume: 17, quantity: 500, maxVolume: 20))
+        drinkList.append(Drink(name: "Вермут", minVolume: 16, quantity: 500, maxVolume: 18))
+        drinkList.append(Drink(name: "Ликер", minVolume: 15, quantity: 500, maxVolume: 40))
+        drinkList.append(Drink(name: "Лимончелло", minVolume: 30, quantity: 500, maxVolume: 43))
     }
     
     // MARK: - Логика ячеек таблицы
@@ -83,8 +93,8 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         cell.drinkNameLabel.text = drinkList[indexPath.row].name
         cell.alcoholQuantityLabel.text = String(drinkList[indexPath.row].quantity) + " мл"
-        cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].volume) + "%"
-        switch drinkList[indexPath.row].volume
+        cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].minVolume) + "%"
+        switch drinkList[indexPath.row].minVolume
         {
         case 0..<10:
             cell.alcoholVolumeLabel.textColor = UIColor.green

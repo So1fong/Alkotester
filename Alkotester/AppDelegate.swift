@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")
                 {
-                    drinkVolumeArray = UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray") as? [Double] ?? [Double]()
+                    drinkVolumeArray = UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray") as? [Int] ?? [Int]()
                 }
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")
                 {

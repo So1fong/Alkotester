@@ -9,7 +9,7 @@
 import UIKit
 
 var drinkNameArray: [String] = []
-var drinkVolumeArray: [Double] = []
+var drinkVolumeArray: [Int] = []
 var drinkQuantityArray: [Int] = []
 
 class AddDrinkVC: UIViewController
@@ -22,7 +22,7 @@ class AddDrinkVC: UIViewController
     {
         super.viewDidLoad()
         quantityTextField.text = String(drinkList[myIndex].quantity)
-        volumeTextField.text = String(drinkList[myIndex].volume)
+        volumeTextField.text = String(drinkList[myIndex].minVolume)
     }
     
     // MARK: - Navigation
@@ -34,13 +34,13 @@ class AddDrinkVC: UIViewController
     @IBAction func saveButtonTapped(_ sender: UIButton)
     {
         var tempQuantity: Int
-        var tempVolume: Double
+        var tempVolume: Int
         var tempDrink: Drink
 
         if let quantity = Int(quantityTextField.text!)
         {
             tempQuantity = quantity
-            if let volume = Double(volumeTextField.text!)
+            if let volume = Int(volumeTextField.text!)
             {
                 // проверка введенного значения крепости напитка
                 if (volume < 0 || volume > 100)
@@ -50,9 +50,9 @@ class AddDrinkVC: UIViewController
                 else
                 {
                     tempVolume = volume
-                    tempDrink = Drink(name: drinkList[myIndex].name, volume: tempVolume, quantity: tempQuantity)
+                    tempDrink = Drink(name: drinkList[myIndex].name, minVolume: tempVolume, quantity: tempQuantity, maxVolume: drinkList[myIndex].maxVolume)
                     drinkNameArray.append(tempDrink.name)
-                    drinkVolumeArray.append(tempDrink.volume)
+                    drinkVolumeArray.append(tempDrink.minVolume)
                     drinkQuantityArray.append(tempDrink.quantity)
                     print(drinkNameArray, drinkNameArray.count)
                     print(drinkVolumeArray, drinkVolumeArray.count)
