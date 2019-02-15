@@ -53,19 +53,19 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         drinkList.append(Drink(name: "Пиво", minVolume: 4, quantity: 500, maxVolume: 14)) //4-14
         drinkList.append(Drink(name: "Шампанское", minVolume: 8, quantity: 200, maxVolume: 13)) //8-13
         drinkList.append(Drink(name: "Вино", minVolume: 9, quantity: 200, maxVolume: 22)) //9-22
-        drinkList.append(Drink(name: "Водка", minVolume: 40, quantity: 40, maxVolume: nil)) //40
-        drinkList.append(Drink(name: "Виски", minVolume: 40, quantity: 40, maxVolume: 50)) //40-50
-        drinkList.append(Drink(name: "Ром", minVolume: 30, quantity: 40, maxVolume: 78)) //30-78
-        drinkList.append(Drink(name: "Джин", minVolume: 38, quantity: 40, maxVolume: 45)) //38-45
-        drinkList.append(Drink(name: "Коньяк", minVolume: 40, quantity: 40, maxVolume: nil))
-        drinkList.append(Drink(name: "Ликер", minVolume: 40, quantity: 40, maxVolume: nil))
-        drinkList.append(Drink(name: "Сакэ", minVolume: 15, quantity: 40, maxVolume: 20)) //15-20
-        drinkList.append(Drink(name: "Бренди", minVolume: 40, quantity: 40, maxVolume: nil))
-        drinkList.append(Drink(name: "Абсент", minVolume: 70, quantity: 40, maxVolume: 86)) //70-86
-        drinkList.append(Drink(name: "Самбука", minVolume: 38, quantity: 40, maxVolume: 42)) //38-42
-        drinkList.append(Drink(name: "Текила", minVolume: 35, quantity: 40, maxVolume: 55)) //35-55
+        drinkList.append(Drink(name: "Водка", minVolume: 40, quantity: 50, maxVolume: nil)) //40
+        drinkList.append(Drink(name: "Виски", minVolume: 40, quantity: 50, maxVolume: 50)) //40-50
+        drinkList.append(Drink(name: "Ром", minVolume: 30, quantity: 50, maxVolume: 78)) //30-78
+        drinkList.append(Drink(name: "Джин", minVolume: 38, quantity: 50, maxVolume: 45)) //38-45
+        drinkList.append(Drink(name: "Коньяк", minVolume: 40, quantity: 50, maxVolume: nil))
+        drinkList.append(Drink(name: "Ликер", minVolume: 40, quantity: 50, maxVolume: nil))
+        drinkList.append(Drink(name: "Сакэ", minVolume: 15, quantity: 50, maxVolume: 20)) //15-20
+        drinkList.append(Drink(name: "Бренди", minVolume: 40, quantity: 50, maxVolume: nil))
+        drinkList.append(Drink(name: "Абсент", minVolume: 70, quantity: 50, maxVolume: 86)) //70-86
+        drinkList.append(Drink(name: "Самбука", minVolume: 38, quantity: 50, maxVolume: 42)) //38-42
+        drinkList.append(Drink(name: "Текила", minVolume: 35, quantity: 50, maxVolume: 55)) //35-55
         drinkList.append(Drink(name: "Мартини", minVolume: 16, quantity: 200, maxVolume: nil))
-        drinkList.append(Drink(name: "Настойка", minVolume: 20, quantity: 45, maxVolume: nil))
+        drinkList.append(Drink(name: "Настойка", minVolume: 20, quantity: 50, maxVolume: 45))
         drinkList.append(Drink(name: "Алкогольный коктейль", minVolume: 4, quantity: 200, maxVolume: 12)) //4-12
         drinkList.append(Drink(name: "Сидр", minVolume: 2, quantity: 500, maxVolume: 7)) //2-7
         drinkList.append(Drink(name: "Эль", minVolume: 5, quantity: 500, maxVolume: 7))

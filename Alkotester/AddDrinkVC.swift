@@ -17,12 +17,53 @@ class AddDrinkVC: UIViewController
     @IBOutlet weak var hungerSlider: UISlider!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var volumeTextField: UITextField!
+    @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet weak var quantitySlider: UISlider!
+    @IBOutlet weak var volumeLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        customizeSliders()
+        quantityLabel.text = String(drinkList[myIndex].quantity) + " мл"
+        volumeLabel.text = String(drinkList[myIndex].minVolume) + "°"
         quantityTextField.text = String(drinkList[myIndex].quantity)
         volumeTextField.text = String(drinkList[myIndex].minVolume)
+    }
+    
+    @IBAction func volumeSliderValueChanged(_ sender: UISlider)
+    {
+        let volumeSliderStep: Float = 1
+        let currentValue = round(sender.value / volumeSliderStep) * volumeSliderStep
+        sender.value = round(currentValue)
+        volumeLabel.text = String(Int(volumeSlider.value)) + "°"
+    }
+    
+    @IBAction func quantitySliderValueChanged(_ sender: UISlider)
+    {
+        let quantitySliderStep: Float = 50
+        let currentValue = round(sender.value / quantitySliderStep) * quantitySliderStep
+        sender.value = round(currentValue)
+        quantityLabel.text = String(Int(quantitySlider.value)) + " мл"
+    }
+    
+    func customizeSliders()
+    {
+        if let maxVolume = drinkList[myIndex].maxVolume
+        {
+            volumeSlider.isEnabled = true
+            quantitySlider.isEnabled = true
+            volumeSlider.maximumValue = Float(maxVolume)
+            volumeSlider.minimumValue = Float(drinkList[myIndex].minVolume)
+            quantitySlider.maximumValue = 1000
+            quantitySlider.minimumValue = 50
+        }
+        else
+        {
+            volumeSlider.isEnabled = false
+        }
+
     }
     
     // MARK: - Navigation

@@ -137,8 +137,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1W-jI-53a">
-                                                    <rect key="frame" x="244" y="11" width="61" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1W-jI-53a">
+                                                    <rect key="frame" x="258" y="11" width="47" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -250,13 +250,19 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wZF-vr-bGq">
                                 <rect key="frame" x="83" y="237" width="223" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="volumeSliderValueChanged:" destination="oZJ-Yq-5hH" eventType="valueChanged" id="fFF-3T-bQf"/>
+                                </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="S27-gV-s84">
                                 <rect key="frame" x="83" y="289" width="223" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="quantitySliderValueChanged:" destination="oZJ-Yq-5hH" eventType="valueChanged" id="ngq-92-TdB"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xay-Rc-aGx">
-                                <rect key="frame" x="16" y="293" width="55" height="21"/>
+                                <rect key="frame" x="16" y="293" width="70" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -275,7 +281,11 @@
                     </view>
                     <connections>
                         <outlet property="hungerSlider" destination="6Lm-Cf-kA6" id="rpv-1n-TI2"/>
+                        <outlet property="quantityLabel" destination="xay-Rc-aGx" id="aqu-2b-28T"/>
+                        <outlet property="quantitySlider" destination="S27-gV-s84" id="j3p-aX-fPt"/>
                         <outlet property="quantityTextField" destination="3GN-VU-ElV" id="Bvk-vr-53V"/>
+                        <outlet property="volumeLabel" destination="oio-2c-e3C" id="nMF-DH-Q7Y"/>
+                        <outlet property="volumeSlider" destination="wZF-vr-bGq" id="FKo-C9-DrG"/>
                         <outlet property="volumeTextField" destination="Vaz-N6-LVR" id="fJP-Uc-J9D"/>
                     </connections>
                 </viewController>
