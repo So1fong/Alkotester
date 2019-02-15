@@ -51,29 +51,15 @@ class AddDrinkVC: UIViewController
                 {
                     tempVolume = volume
                     tempDrink = Drink(name: drinkList[myIndex].name, volume: tempVolume, quantity: tempQuantity)
-                    print("ARRAYS")
                     drinkNameArray.append(tempDrink.name)
                     drinkVolumeArray.append(tempDrink.volume)
                     drinkQuantityArray.append(tempDrink.quantity)
                     print(drinkNameArray, drinkNameArray.count)
                     print(drinkVolumeArray, drinkVolumeArray.count)
                     print(drinkQuantityArray, drinkQuantityArray.count)
-                    print("USER DEFAULTS BEFORE ADDING NEW DRINK")
-                    print(UserDefaults.standard.array(forKey: "settingsDrinkNameArray"), UserDefaults.standard.array(forKey: "settingsDrinkNameArray")?.count)
-                    print(UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray"), UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")?.count)
-                    print(UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray"), UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")?.count)
                     UserDefaults.standard.set(drinkNameArray, forKey: "settingsDrinkNameArray")
                     UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
                     UserDefaults.standard.set(drinkQuantityArray, forKey: "settingsDrinkQuantityArray")
-                    //UserDefaults.standard.array(forKey: <#T##String#>)
-                    //print("ДО ДЕЛЕГАТА")
-
-                    //print("ПОСЛЕ ДЕЛЕГАТА")
-
-                    print("USER DEFAULTS AFTER ADDING NEW DRINK")
-                    print(UserDefaults.standard.array(forKey: "settingsDrinkNameArray"), UserDefaults.standard.array(forKey: "settingsDrinkNameArray")?.count)
-                    print(UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray"), UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")?.count)
-                    print(UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray"), UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")?.count)
                     navigationController?.popViewController(animated: true)
 
                 }

@@ -47,7 +47,6 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let delete = UITableViewRowAction(style: .destructive, title: "Удалить", handler:
         {
             (action, indexPath) in
-            print("on swipe")
             print(drinkNameArray, drinkNameArray.count)
             print(drinkQuantityArray, drinkQuantityArray.count)
             print(drinkVolumeArray, drinkVolumeArray.count)

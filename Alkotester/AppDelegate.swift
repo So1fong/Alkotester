@@ -23,27 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if launchedBefore
             {
                 tabBarController.selectedIndex = 0
-                // подумать, как сделать
-                print("SETTINGS ON LAUNCH")
-                print(UserDefaults.standard.array(forKey: "settingsDrinkNameArray"), UserDefaults.standard.array(forKey: "settingsDrinkNameArray")?.count)
-                print(UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray"), UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")?.count)
-                print(UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray"), UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")?.count)
-                if let _ = UserDefaults.standard.array(forKey: "settingsDrinkNameArray")
+                if let _ = UserDefaults.standard.stringArray(forKey: "settingsDrinkNameArray")
                 {
-                    drinkNameArray = UserDefaults.standard.object(forKey: "settingsDrinkNameArray") as? [String] ?? [String]()
+                    drinkNameArray = UserDefaults.standard.stringArray(forKey: "settingsDrinkNameArray") ?? [String]()
                 }
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray")
                 {
-                    drinkVolumeArray = UserDefaults.standard.object(forKey: "settingsDrinkVolumeArray") as? [Double] ?? [Double]()
+                    drinkVolumeArray = UserDefaults.standard.array(forKey: "settingsDrinkVolumeArray") as? [Double] ?? [Double]()
                 }
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray")
                 {
-                    drinkQuantityArray = UserDefaults.standard.object(forKey: "settingsDrinkQuantityArray") as? [Int] ?? [Int]()
+                    drinkQuantityArray = UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray") as? [Int] ?? [Int]()
                 }
-                print("ON LAUNCH")
-                print(drinkNameArray, drinkNameArray.count)
-                print(drinkVolumeArray, drinkVolumeArray.count)
-                print(drinkQuantityArray, drinkQuantityArray.count)
             }
             else
             {
@@ -61,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        UserDefaults.standard.synchronize()
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
