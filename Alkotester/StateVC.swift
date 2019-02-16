@@ -17,22 +17,16 @@ class StateVC: UIViewController
         super.viewDidLoad()
         customizeAddButton()
         hideNavigationBar()
-        //let rect = CGRect(x: 0, y: 0, width: 100, height: 100)
-        //let roundedRect = UIBezierPath(roundedRect: rect, cornerRadius: 50)
-        //let circle = UIBezierPath(ovalIn: rect)
-        //let renderer = UIGraphicsImageRenderer(size: CGSize(width: 100, height: 100))
-        //let img = renderer.image(actions: { ctx in
-        //    ctx.cgContext.setFillColor(UIColor.red.cgColor)
-        //    ctx.cgContext.setStrokeColor(UIColor.green.cgColor)
-        //    ctx.cgContext.setLineWidth(10)
-        //    let rectangle = CGRect(x: 50, y: 50, width: 50, height: 50)
-        //    ctx.cgContext.addEllipse(in: rectangle)
-        //    ctx.cgContext.drawPath(using: .fillStroke)
-        //})
-        
         let circle = CircleView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         circle.center = CGPoint(x: view.center.x, y: view.frame.height/5)
+        let promilleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+        promilleLabel.center = circle.center
+        promilleLabel.text = "0.0‰"
+        promilleLabel.textAlignment = .center
+        promilleLabel.font = promilleLabel.font.withSize(45)
+        promilleLabel.textColor = UIColor.black
         self.view.addSubview(circle)
+        self.view.addSubview(promilleLabel)
     }
     
     func hideNavigationBar()
