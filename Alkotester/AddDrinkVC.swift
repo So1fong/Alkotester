@@ -15,8 +15,6 @@ var drinkQuantityArray: [Int] = []
 class AddDrinkVC: UIViewController
 {
     @IBOutlet weak var hungerSlider: UISlider!
-    @IBOutlet weak var quantityTextField: UITextField!
-    @IBOutlet weak var volumeTextField: UITextField!
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var quantitySlider: UISlider!
     @IBOutlet weak var volumeLabel: UILabel!
@@ -28,8 +26,6 @@ class AddDrinkVC: UIViewController
         customizeSliders()
         quantityLabel.text = String(drinkList[myIndex].quantity) + " мл"
         volumeLabel.text = String(drinkList[myIndex].minVolume) + "°"
-        quantityTextField.text = String(drinkList[myIndex].quantity)
-        volumeTextField.text = String(drinkList[myIndex].minVolume)
     }
     
     @IBAction func volumeSliderValueChanged(_ sender: UISlider)
