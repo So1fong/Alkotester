@@ -48,6 +48,15 @@ class PromilleCalculator
     func calculatePromille() -> Double
     {
         //формула Видмарка
-        return (self.alcoholConsumed / (Double(self.weight) * self.rCoef)) * 0.8
+        var result = (self.alcoholConsumed / (Double(self.weight) * self.rCoef)) * 0.8
+        result = Double(round(10 * result) / 10) //округление до 1 знака после запятой
+        return result
+    }
+    
+    func timeLeft() -> Double
+    {
+        var timeLeft = calculatePromille() / 0.15
+        timeLeft = Double(round(10 * timeLeft) / 10) //округление до 1 знака после запятой
+        return timeLeft
     }
 }

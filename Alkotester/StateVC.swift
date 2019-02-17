@@ -32,7 +32,10 @@ class StateVC: UIViewController
         calc.getWeight()
         calc.alcoholConsumed = 500*0.08
         let result = calc.calculatePromille()
-        print(result)
+        //полный желудок дает -22% от итогового промилле
+        print("promille \(result)")
+        let timeLeft = calc.timeLeft()
+        print("time left \(timeLeft) hrs")
     }
     
     func hideNavigationBar()
