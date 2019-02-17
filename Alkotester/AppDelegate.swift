@@ -35,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 {
                     drinkQuantityArray = UserDefaults.standard.array(forKey: "settingsDrinkQuantityArray") as? [Int] ?? [Int]()
                 }
+                if let _ = UserDefaults.standard.array(forKey: "settingsDrinkHungerArray")
+                {
+                    drinkHungerArray = UserDefaults.standard.array(forKey: "settingsDrinkHungerArray") as? [Float] ?? [Float]()
+                }
                 if let _ = UserDefaults.standard.array(forKey: "settingsDrinkDateArray")
                 {
                     drinkDateArray = UserDefaults.standard.array(forKey: "settingsDrinkDateArray") as? [Date] ?? [Date]()

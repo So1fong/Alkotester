@@ -12,6 +12,8 @@ class StateVC: UIViewController
 {
 
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var sobrietyLabel: UILabel!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -34,8 +36,10 @@ class StateVC: UIViewController
         let result = calc.calculatePromille()
         //полный желудок дает -22% от итогового промилле
         print("promille \(result)")
+        //допустимый диапазон промилле -- 0.0-0.16
         let timeLeft = calc.timeLeft()
         print("time left \(timeLeft) hrs")
+        sobrietyLabel.text = "Вы трезвы"
     }
     
     func hideNavigationBar()

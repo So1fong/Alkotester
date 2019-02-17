@@ -87,6 +87,13 @@
                                     <segue destination="uSy-e2-k4d" kind="show" id="Iw6-qp-WKz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwX-HY-Pv2">
+                                <rect key="frame" x="16" y="219" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nhb-hZ-Ayl"/>
@@ -97,11 +104,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="h0c-to-j6E" id="rr4-a2-r4x"/>
+                        <outlet property="sobrietyLabel" destination="KwX-HY-Pv2" id="mmD-Iv-Hzx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meA-L0-V5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1403" y="295"/>
+            <point key="canvasLocation" x="1402.5" y="294.71830985915494"/>
         </scene>
         <!--Alco ListVC-->
         <scene sceneID="NXp-dk-qcD">
@@ -197,6 +205,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Lm-Cf-kA6">
                                 <rect key="frame" x="98" y="181" width="208" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="hungerSliderValueChanged:" destination="oZJ-Yq-5hH" eventType="valueChanged" id="ivW-Xw-nOO"/>
+                                </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wZF-vr-bGq">
                                 <rect key="frame" x="98" y="77" width="208" height="30"/>
@@ -254,7 +265,7 @@
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="uWR-Cb-kZE" id="px6-ED-r2R"/>
-                        <outlet property="hungerSlider" destination="6Lm-Cf-kA6" id="rpv-1n-TI2"/>
+                        <outlet property="hungerSlider" destination="6Lm-Cf-kA6" id="Y6N-5p-jXt"/>
                         <outlet property="quantityLabel" destination="xay-Rc-aGx" id="aqu-2b-28T"/>
                         <outlet property="quantitySlider" destination="S27-gV-s84" id="j3p-aX-fPt"/>
                         <outlet property="volumeLabel" destination="oio-2c-e3C" id="nMF-DH-Q7Y"/>

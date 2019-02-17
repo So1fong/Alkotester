@@ -84,8 +84,6 @@ class SettingsVC: UIViewController
         row = UserDefaults.standard.integer(forKey: "selectedCurrencyInWeightPicker")
         weightPicker.selectRow(row, inComponent: 0, animated: false)
     }
-
-
 }
 
 
