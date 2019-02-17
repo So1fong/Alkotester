@@ -27,9 +27,12 @@ class StateVC: UIViewController
         promilleLabel.textColor = UIColor.black
         self.view.addSubview(circle)
         self.view.addSubview(promilleLabel)
-        var calc = PromilleCalculator()
+        let calc = PromilleCalculator()
         calc.getCoefficient()
         calc.getWeight()
+        calc.alcoholConsumed = 500*0.08
+        let result = calc.calculatePromille()
+        print(result)
     }
     
     func hideNavigationBar()

@@ -12,6 +12,7 @@ class PromilleCalculator
 {
     var rCoef: Double = 0
     var weight: Int = 0
+    var alcoholConsumed: Double = 0
     
     
     func getWeight()
@@ -42,5 +43,11 @@ class PromilleCalculator
             }
         }
         print(rCoef)
+    }
+    
+    func calculatePromille() -> Double
+    {
+        //формула Видмарка
+        return (self.alcoholConsumed / (Double(self.weight) * self.rCoef)) * 0.8
     }
 }
