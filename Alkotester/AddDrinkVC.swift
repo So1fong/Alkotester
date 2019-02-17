@@ -11,6 +11,7 @@ import UIKit
 var drinkNameArray: [String] = []
 var drinkVolumeArray: [Int] = []
 var drinkQuantityArray: [Int] = []
+var drinkDateArray: [Date] = []
 
 class AddDrinkVC: UIViewController
 {
@@ -76,16 +77,18 @@ class AddDrinkVC: UIViewController
     {
         let tempQuantity = Int(quantitySlider.value)
         let minVolume = Int(volumeSlider.value)
-        let tempDrink = Drink(name: drinkList[myIndex].name, minVolume: minVolume, quantity: tempQuantity, maxVolume: drinkList[myIndex].maxVolume)
+        let tempDrink = Drink(name: drinkList[myIndex].name, minVolume: minVolume, quantity: tempQuantity, maxVolume: drinkList[myIndex].maxVolume, date: datePicker.date)
         drinkNameArray.append(tempDrink.name)
         drinkVolumeArray.append(tempDrink.minVolume)
         drinkQuantityArray.append(tempDrink.quantity)
+        drinkDateArray.append(tempDrink.date!)
         print(drinkNameArray, drinkNameArray.count)
         print(drinkVolumeArray, drinkVolumeArray.count)
         print(drinkQuantityArray, drinkQuantityArray.count)
         UserDefaults.standard.set(drinkNameArray, forKey: "settingsDrinkNameArray")
         UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
         UserDefaults.standard.set(drinkQuantityArray, forKey: "settingsDrinkQuantityArray")
+        UserDefaults.standard.set(drinkDateArray, forKey: "settingsDrinkDateArray")
         navigationController?.popViewController(animated: true)
     }
     
