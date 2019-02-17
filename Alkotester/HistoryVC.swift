@@ -39,6 +39,9 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         default:
             break
         }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy HH:mm"
+        historyCell.drinkDateLabel.text = formatter.string(from: drinkDateArray[indexPath.row])
         return historyCell
     }
     

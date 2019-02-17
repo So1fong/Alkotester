@@ -14,6 +14,7 @@ class HistoryTableViewCell: UITableViewCell
     @IBOutlet weak var drinkNameLabel: UILabel!
     @IBOutlet weak var drinkVolumeLabel: UILabel!
     @IBOutlet weak var drinkQuantityLabel: UILabel!
+    @IBOutlet weak var drinkDateLabel: UILabel!
     
     override func awakeFromNib()
     {

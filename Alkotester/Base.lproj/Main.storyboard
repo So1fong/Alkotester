@@ -323,9 +323,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBp-1c-i7f">
+                                                    <rect key="frame" x="127" y="27" width="146" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="drinkDateLabel" destination="qBp-1c-i7f" id="Hf5-Ki-CQO"/>
                                             <outlet property="drinkNameLabel" destination="Svj-bx-tjV" id="Ej8-aC-J9z"/>
                                             <outlet property="drinkQuantityLabel" destination="J0V-vV-JfL" id="Q2G-fR-uCW"/>
                                             <outlet property="drinkVolumeLabel" destination="VZy-xL-wX2" id="AO0-Nf-KmP"/>
