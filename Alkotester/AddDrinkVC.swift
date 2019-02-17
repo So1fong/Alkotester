@@ -19,6 +19,7 @@ class AddDrinkVC: UIViewController
     @IBOutlet weak var quantitySlider: UISlider!
     @IBOutlet weak var volumeLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad()
     {
