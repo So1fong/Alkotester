@@ -37,9 +37,11 @@ class StateVC: UIViewController
         //полный желудок дает -22% от итогового промилле
         print("promille \(result)")
         //допустимый диапазон промилле -- 0.0-0.16
+        //алкоголь держится в крови максимум 3 дня
         let timeLeft = calc.timeLeft()
         print("time left \(timeLeft) hrs")
         sobrietyLabel.text = "Вы трезвы"
+        calc.fillLast3DaysDrinkArray()
     }
     
     func hideNavigationBar()
