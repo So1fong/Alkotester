@@ -53,15 +53,34 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             print(drinkNameArray, drinkNameArray.count)
             print(drinkQuantityArray, drinkQuantityArray.count)
             print(drinkVolumeArray, drinkVolumeArray.count)
+            var date3DaysAgo = Date(timeIntervalSinceNow: 0) // now
+            date3DaysAgo = date3DaysAgo.addDays(daysToAdd: -3) // 3 days ago
+            let tempDrink = Drink(name: drinkNameArray[indexPath.row], minVolume: drinkVolumeArray[indexPath.row],
+                                  quantity: drinkQuantityArray[indexPath.row], maxVolume: 0,
+                                  date: drinkDateArray[indexPath.row], hunger: drinkHungerArray[indexPath.row])
+            if drinkDateArray[indexPath.row].isGreaterThanDate(dateToCompare: date3DaysAgo) &&
+                !last3DaysDrinkArray.contains(where: {$0 == tempDrink})
+            {
+                if let index = last3DaysDrinkArray.firstIndex(of: tempDrink)
+                {
+                    last3DaysDrinkArray.remove(at: index)
+                }
+            }
             drinkNameArray.remove(at: indexPath.row)
             drinkQuantityArray.remove(at: indexPath.row)
             drinkVolumeArray.remove(at: indexPath.row)
+            drinkDateArray.remove(at: indexPath.row)
+            drinkHungerArray.remove(at: indexPath.row)
+
             print(drinkNameArray, drinkNameArray.count)
             print(drinkQuantityArray, drinkQuantityArray.count)
             print(drinkVolumeArray, drinkVolumeArray.count)
+            
             UserDefaults.standard.set(drinkNameArray, forKey: "settingsDrinkNameArray")
             UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
             UserDefaults.standard.set(drinkQuantityArray, forKey: "settingsDrinkQuantityArray")
+            UserDefaults.standard.set(drinkDateArray, forKey: "settingsDrinkDateArray")
+            UserDefaults.standard.set(drinkHungerArray, forKey: "settingsDrinkHungerArray")
             tableView.deleteRows(at: [indexPath], with: .fade)
         })
         return [delete]

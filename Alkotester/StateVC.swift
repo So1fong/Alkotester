@@ -29,7 +29,7 @@ class StateVC: UIViewController
         promilleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         promilleLabel.center = circle.center
         promilleLabel.textAlignment = .center
-        promilleLabel.font = promilleLabel.font.withSize(45)
+        promilleLabel.font = promilleLabel.font.withSize(40)
         promilleLabel.textColor = UIColor.black
         self.view.addSubview(circle)
         self.view.addSubview(promilleLabel)
@@ -48,16 +48,19 @@ class StateVC: UIViewController
             let result = calc.calculatePromille()
             let timeLeft = calc.timeLeft(promilleNumber: result)
             promilleLabel.text = String(result) + "‰"
-            if result >= 0.0 && result <= 0.16
+            if result == 0.0 && result <= 0.16
             {
                 sobrietyLabel.text = "Вы трезвы"
+            }
+            else if result >= 0.1 && result <= 0.35
+            {
+                sobrietyLabel.text = "Концентрация алкоголя в крови в пределах допустимой нормы в 0.35‰. Можно садиться за руль. До полного выведения алкоголя из организма осталось \(timeLeft) часов"
             }
             else
             {
                 sobrietyLabel.text = "До полного выведения алкоголя из организма осталось \(timeLeft) часов"
             }
         }
-
     }
     
     func hideNavigationBar()

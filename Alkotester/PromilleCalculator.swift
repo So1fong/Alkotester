@@ -134,7 +134,7 @@ class PromilleCalculator
         print("alcoholConsumed \(alcoholConsumed)")
         print("weight = \(weight), rCoef = \(rCoef)")
         var result = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
-        result = Double(round(10 * result) / 10) //округление до 1 знака после запятой
+        result = Double(round(100 * result) / 100) //округление до 1 знака после запятой
         print("result \(result)")
         return result
     }
