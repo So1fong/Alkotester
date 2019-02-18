@@ -69,13 +69,23 @@ class PromilleCalculator
         {
             var date3DaysAgo = Date(timeIntervalSinceNow: 0) // now
             date3DaysAgo = date3DaysAgo.addDays(daysToAdd: -3) // 3 days ago
+            var tempDrink: Drink
             for i in 0...drinkDateArray.count-1
             {
-                if (drinkDateArray[i].isGreaterThanDate(dateToCompare: date3DaysAgo))
+                tempDrink = Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i],
+                                 quantity: drinkQuantityArray[i], maxVolume: 0,
+                                 date: drinkDateArray[i], hunger: drinkHungerArray[i])
+                if last3DaysDrinkArray.count == 0
                 {
-                    last3DaysDrinkArray.append(Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i],
-                                                     quantity: drinkQuantityArray[i], maxVolume: 0,
-                                                     date: drinkDateArray[i], hunger: drinkHungerArray[i]))
+                    last3DaysDrinkArray.append(tempDrink)
+                }
+                else
+                {
+                    if drinkDateArray[i].isGreaterThanDate(dateToCompare: date3DaysAgo) &&
+                    !last3DaysDrinkArray.contains(where: {$0 == tempDrink})
+                    {
+                        last3DaysDrinkArray.append(tempDrink)
+                    }
                 }
             }
         }
@@ -91,7 +101,6 @@ class PromilleCalculator
                 weight = i + 30
             }
         }
-        print(weight)
     }
     
     func getCoefficient()
@@ -108,21 +117,29 @@ class PromilleCalculator
                 break
             }
         }
-        print(rCoef)
     }
     
     func calculatePromille() -> Double
     {
         //формула Видмарка
+        print(last3DaysDrinkArray, last3DaysDrinkArray.count)
+        getWeight()
+        getCoefficient()
+        for i in 0...last3DaysDrinkArray.count-1
+        {
+            alcoholConsumed += Double(last3DaysDrinkArray[i].quantity * last3DaysDrinkArray[i].minVolume) / 100
+        }
+        print("alcoholConsumed \(alcoholConsumed)")
         var result = (self.alcoholConsumed / (Double(self.weight) * self.rCoef)) * 0.8
         //let hungerCoef =
         result = Double(round(10 * result) / 10) //округление до 1 знака после запятой
-
+        print("result \(result)")
         return result
     }
     
     func timeLeft() -> Double
     {
+        alcoholConsumed = 0
         var timeLeft = calculatePromille() / 0.15
         timeLeft = Double(round(10 * timeLeft) / 10) //округление до 1 знака после запятой
         return timeLeft

@@ -90,7 +90,16 @@ class AddDrinkVC: UIViewController
     {
         let tempQuantity = Int(quantitySlider.value)
         let minVolume = Int(volumeSlider.value)
-        let tempDrink = Drink(name: drinkList[myIndex].name, minVolume: minVolume, quantity: tempQuantity, maxVolume: drinkList[myIndex].maxVolume!, date: datePicker.date, hunger: Int(hungerSlider!.value))
+        let tempDrink: Drink
+        if let maxVolume = drinkList[myIndex].maxVolume
+        {
+            tempDrink = Drink(name: drinkList[myIndex].name, minVolume: minVolume, quantity: tempQuantity, maxVolume: maxVolume, date: datePicker.date, hunger: Int(hungerSlider!.value))
+        }
+        else
+        {
+            tempDrink = Drink(name: drinkList[myIndex].name, minVolume: minVolume, quantity: tempQuantity, maxVolume: nil, date: datePicker.date, hunger: Int(hungerSlider!.value))
+        }
+
         drinkNameArray.append(tempDrink.name)
         drinkVolumeArray.append(tempDrink.minVolume)
         drinkQuantityArray.append(tempDrink.quantity)

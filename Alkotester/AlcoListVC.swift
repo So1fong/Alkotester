@@ -31,7 +31,7 @@ struct Drink: Codable
         self.hunger = nil
     }
     
-    init(name: String, minVolume: Int, quantity: Int, maxVolume: Int)
+    init(name: String, minVolume: Int, quantity: Int, maxVolume: Int?)
     {
         self.name = name
         self.minVolume = minVolume
@@ -41,7 +41,7 @@ struct Drink: Codable
         self.hunger = nil
     }
     
-    init(name: String, minVolume: Int, quantity: Int, maxVolume: Int, date: Date, hunger: Int)
+    init(name: String, minVolume: Int, quantity: Int, maxVolume: Int?, date: Date?, hunger: Int?)
     {
         self.name = name
         self.minVolume = minVolume
@@ -49,6 +49,29 @@ struct Drink: Codable
         self.maxVolume = maxVolume
         self.date = date
         self.hunger = hunger
+    }
+}
+
+extension Drink: Equatable
+{
+    static func == (lhs: Drink, rhs: Drink) -> Bool
+    {
+        return lhs.name == rhs.name &&
+               lhs.maxVolume == rhs.maxVolume &&
+               lhs.minVolume == rhs.minVolume &&
+               lhs.date == rhs.date &&
+               lhs.quantity == rhs.quantity &&
+               lhs.hunger == rhs.hunger
+    }
+
+    static func != (lhs: Drink, rhs: Drink) -> Bool
+    {
+        return lhs.name != rhs.name ||
+               lhs.maxVolume != rhs.maxVolume ||
+               lhs.minVolume != rhs.minVolume ||
+               lhs.date != rhs.date ||
+               lhs.quantity != rhs.quantity ||
+               lhs.hunger != rhs.hunger
     }
 }
 
