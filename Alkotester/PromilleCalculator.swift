@@ -94,11 +94,11 @@ class PromilleCalculator
     func getWeight()
     {
         let index = UserDefaults.standard.integer(forKey: "selectedCurrencyInWeightPicker")
-        for i in 0...170
+        for i in 0...160
         {
             if i == index
             {
-                weight = i + 30
+                weight = i + 40
             }
         }
     }
@@ -127,20 +127,22 @@ class PromilleCalculator
         getCoefficient()
         for i in 0...last3DaysDrinkArray.count-1
         {
-            alcoholConsumed += Double(last3DaysDrinkArray[i].quantity * last3DaysDrinkArray[i].minVolume) / 100
+            let hungerCoef = 1.0 - (Double(last3DaysDrinkArray[i].hunger!) / 100)
+            print("hunger = \(String(describing: last3DaysDrinkArray[i].hunger)), hungerCoef = \(hungerCoef)")
+            alcoholConsumed += (Double(last3DaysDrinkArray[i].quantity) * Double(last3DaysDrinkArray[i].minVolume) * hungerCoef) / 100
         }
         print("alcoholConsumed \(alcoholConsumed)")
-        var result = (self.alcoholConsumed / (Double(self.weight) * self.rCoef)) * 0.8
-        //let hungerCoef =
+        print("weight = \(weight), rCoef = \(rCoef)")
+        var result = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
         result = Double(round(10 * result) / 10) //округление до 1 знака после запятой
         print("result \(result)")
         return result
     }
     
-    func timeLeft() -> Double
+    func timeLeft(promilleNumber: Double) -> Double
     {
         alcoholConsumed = 0
-        var timeLeft = calculatePromille() / 0.15
+        var timeLeft = promilleNumber / 0.15
         timeLeft = Double(round(10 * timeLeft) / 10) //округление до 1 знака после запятой
         return timeLeft
     }

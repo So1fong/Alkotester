@@ -44,8 +44,9 @@ class SettingsVC: UIViewController
         weightPicker.delegate = self
         weightPicker.dataSource = self
         //выбрать по умолчанию значения: рост 170 см, вес 60 кг
-        heightPicker.selectRow(30, inComponent: 0, animated: false)
-        weightPicker.selectRow(30, inComponent: 0, animated: false)
+        genderPicker.selectRow(1, inComponent: 0, animated: false)
+        heightPicker.selectRow(50, inComponent: 0, animated: false)
+        weightPicker.selectRow(50, inComponent: 0, animated: false)
     }
     
     func setHeightPickerData()
@@ -58,7 +59,7 @@ class SettingsVC: UIViewController
     
     func setWeightPickerData()
     {
-        for i in 30...200
+        for i in 40...200
         {
             weightPickerData.append(String(i))
         }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+let calc = PromilleCalculator()
+
 class StateVC: UIViewController
 {
 
@@ -20,39 +22,31 @@ class StateVC: UIViewController
         super.viewDidLoad()
         customizeAddButton()
         hideNavigationBar()
-        //sobrietyLabel.sizeToFit()
+        calc.rCoef = 0.7
+        calc.weight = 60
         let circle = CircleView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         circle.center = CGPoint(x: view.center.x, y: view.frame.height/5)
         promilleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         promilleLabel.center = circle.center
-
         promilleLabel.textAlignment = .center
         promilleLabel.font = promilleLabel.font.withSize(45)
         promilleLabel.textColor = UIColor.black
         self.view.addSubview(circle)
         self.view.addSubview(promilleLabel)
-
-        //полный желудок дает -22% от итогового промилле
-        //print("promille \(result)")
-        //допустимый диапазон промилле -- 0.0-0.16
-        //алкоголь держится в крови максимум 3 дня
-
-
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         if drinkNameArray.count == 0
         {
-            sobrietyLabel.text = "Пожалуйста, введите свои данные и добавьте напитки для расчета количества алкоголя в крови"
+            sobrietyLabel.text = "Для более точного расчета количества алкоголя в крови требуется ввести свои данные в настройках"
             promilleLabel.text = "0.0‰"
         }
         else
         {
-            let calc = PromilleCalculator()
             calc.fillLast3DaysDrinkArray()
             let result = calc.calculatePromille()
-            let timeLeft = calc.timeLeft()
+            let timeLeft = calc.timeLeft(promilleNumber: result)
             promilleLabel.text = String(result) + "‰"
             if result >= 0.0 && result <= 0.16
             {
@@ -62,8 +56,6 @@ class StateVC: UIViewController
             {
                 sobrietyLabel.text = "До полного выведения алкоголя из организма осталось \(timeLeft) часов"
             }
-            
-            
         }
 
     }
@@ -84,10 +76,6 @@ class StateVC: UIViewController
         addButton.layer.cornerRadius = addButton.bounds.width / 2
     }
 
-    @IBAction func addButtonTapped(_ sender: UIButton)
-    {
-
-    }
     // MARK: - Navigation
 
 }

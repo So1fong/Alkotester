@@ -75,9 +75,9 @@ class AddDrinkVC: UIViewController
         quantitySlider.maximumValue = 1000.0
         quantitySlider.minimumValue = 50.0
         quantitySlider.value = round(Float(drinkList[myIndex].quantity) / quantitySliderStep) * quantitySliderStep
-        hungerSlider.maximumValue = 100.0
+        hungerSlider.maximumValue = 22.0
         hungerSlider.minimumValue = 0.0
-        hungerSlider.value = 30.0
+        hungerSlider.value = 10.0
     }
     
     // MARK: - Navigation
