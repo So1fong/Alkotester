@@ -134,7 +134,7 @@ class PromilleCalculator
         print("alcoholConsumed \(alcoholConsumed)")
         print("weight = \(weight), rCoef = \(rCoef)")
         var result = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
-        result = Double(round(100 * result) / 100) //округление до 1 знака после запятой
+        result = Double(round(100 * result) / 100) //округление до 2 знака после запятой
         print("result \(result)")
         return result
     }
@@ -145,5 +145,28 @@ class PromilleCalculator
         var timeLeft = promilleNumber / 0.15
         timeLeft = Double(round(10 * timeLeft) / 10) //округление до 1 знака после запятой
         return timeLeft
+    }
+    
+    func recalculatePromilleWithHours(currentPromilles: Double) -> Double
+    {
+        var earliestDate = Date(timeIntervalSinceNow: 0)
+        for i in 0...last3DaysDrinkArray.count-1
+        {
+            if let date = last3DaysDrinkArray[i].date
+            {
+                earliestDate = min(date, earliestDate)
+            }
+        }
+        var timePassed = abs(earliestDate.timeIntervalSinceNow)
+        print("timePassed \(timePassed)")
+        var newPromilles = 0.0
+        while timePassed > 0
+        {
+            timePassed -= 240
+            newPromilles = currentPromilles - 0.01
+        }
+        newPromilles = Double(round(100 * newPromilles) / 100)
+        print("new promilles = \(newPromilles)")
+        return newPromilles
     }
 }

@@ -97,7 +97,7 @@ class AddDrinkVC: UIViewController
         }
         else
         {
-            tempDrink = Drink(name: drinkList[myIndex].name, minVolume: minVolume, quantity: tempQuantity, maxVolume: nil, date: datePicker.date, hunger: Int(hungerSlider!.value))
+            tempDrink = Drink(name: drinkList[myIndex].name, minVolume: drinkList[myIndex].minVolume, quantity: tempQuantity, maxVolume: nil, date: datePicker.date, hunger: Int(hungerSlider!.value))
         }
 
         drinkNameArray.append(tempDrink.name)

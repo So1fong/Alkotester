@@ -45,15 +45,17 @@ class StateVC: UIViewController
         else
         {
             calc.fillLast3DaysDrinkArray()
-            let result = calc.calculatePromille()
+            var result = calc.calculatePromille()
+            result = calc.recalculatePromilleWithHours(currentPromilles: result)
             let timeLeft = calc.timeLeft(promilleNumber: result)
             promilleLabel.text = String(result) + "‰"
-            if result == 0.0 && result <= 0.16
+            if result == 0.0
             {
                 sobrietyLabel.text = "Вы трезвы"
             }
             else if result >= 0.1 && result <= 0.35
             {
+                
                 sobrietyLabel.text = "Концентрация алкоголя в крови в пределах допустимой нормы в 0.35‰. Можно садиться за руль. До полного выведения алкоголя из организма осталось \(timeLeft) часов"
             }
             else
