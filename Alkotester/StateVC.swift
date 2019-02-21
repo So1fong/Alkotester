@@ -9,6 +9,7 @@
 import UIKit
 
 let calc = PromilleCalculator()
+var currentState: Double = 0
 
 class StateVC: UIViewController
 {
@@ -37,6 +38,7 @@ class StateVC: UIViewController
     
     override func viewDidAppear(_ animated: Bool)
     {
+        let promilleLoss = 0.015
         if drinkNameArray.count == 0
         {
             sobrietyLabel.text = "Для более точного расчета количества алкоголя в крови требуется ввести свои данные в настройках"
@@ -45,15 +47,29 @@ class StateVC: UIViewController
         else
         {
             calc.fillLast3DaysDrinkArray()
-            var result = calc.calculatePromille()
-            result = calc.recalculatePromilleWithHours(currentPromilles: result)
-            let timeLeft = calc.timeLeft(promilleNumber: result)
-            promilleLabel.text = String(result) + "‰"
-            if result == 0.0
+            let currentTime = Date(timeIntervalSinceNow: 0)
+            currentTime.addDays(daysToAdd: -3)
+            for _ in 0...72
+            {
+                calc.calculatePromille(currentTime: currentTime)
+                currentTime.addHours(hoursToAdd: -1)
+                if currentState <= promilleLoss
+                {
+                    currentState = 0
+                }
+                else
+                {
+                    currentState -= promilleLoss
+                }
+            }
+            currentState = Double(round(100 * currentState) / 100) //округление до 2 знака после запятой
+            let timeLeft = calc.timeLeft(promilleNumber: currentState)
+            promilleLabel.text = String(currentState) + "‰"
+            if currentState == 0.0
             {
                 sobrietyLabel.text = "Вы трезвы"
             }
-            else if result >= 0.1 && result <= 0.35
+            else if currentState >= 0.1 && currentState <= 0.35
             {
                 
                 sobrietyLabel.text = "Концентрация алкоголя в крови в пределах допустимой нормы в 0.35‰. Можно садиться за руль. До полного выведения алкоголя из организма осталось \(timeLeft) часов"

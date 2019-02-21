@@ -40,14 +40,14 @@ extension Date
         return isEqualTo
     }
     
-    func addDays(daysToAdd: Int) -> Date
+    @discardableResult func addDays(daysToAdd: Int) -> Date
     {
         let secondsInDays: TimeInterval = Double(daysToAdd) * 60 * 60 * 24
         let dateWithDaysAdded: Date = self.addingTimeInterval(secondsInDays)
         return dateWithDaysAdded
     }
     
-    func addHours(hoursToAdd: Int) -> Date
+    @discardableResult func addHours(hoursToAdd: Int) -> Date
     {
         let secondsInHours: TimeInterval = Double(hoursToAdd) * 60 * 60
         let dateWithHoursAdded: Date = self.addingTimeInterval(secondsInHours)
@@ -119,24 +119,26 @@ class PromilleCalculator
         }
     }
     
-    func calculatePromille() -> Double
+    func calculatePromille(currentTime: Date)
     {
         //формула Видмарка
         print(last3DaysDrinkArray, last3DaysDrinkArray.count)
         getWeight()
         getCoefficient()
+        
         for i in 0...last3DaysDrinkArray.count-1
         {
-            let hungerCoef = 1.0 - (Double(last3DaysDrinkArray[i].hunger!) / 100)
-            print("hunger = \(String(describing: last3DaysDrinkArray[i].hunger)), hungerCoef = \(hungerCoef)")
-            alcoholConsumed += (Double(last3DaysDrinkArray[i].quantity) * Double(last3DaysDrinkArray[i].minVolume) * hungerCoef) / 100
+            if currentTime.isGreaterThanDate(dateToCompare: last3DaysDrinkArray[i].date!)
+            {
+                let hungerCoef = 1.0 - (Double(last3DaysDrinkArray[i].hunger!) / 100)
+                print("hunger = \(String(describing: last3DaysDrinkArray[i].hunger)), hungerCoef = \(hungerCoef)")
+                alcoholConsumed = (Double(last3DaysDrinkArray[i].quantity) * Double(last3DaysDrinkArray[i].minVolume) * hungerCoef) / 100
+            }
         }
         print("alcoholConsumed \(alcoholConsumed)")
         print("weight = \(weight), rCoef = \(rCoef)")
-        var result = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
-        result = Double(round(100 * result) / 100) //округление до 2 знака после запятой
-        print("result \(result)")
-        return result
+        currentState = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
+        
     }
     
     func timeLeft(promilleNumber: Double) -> Double
