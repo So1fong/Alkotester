@@ -13,6 +13,7 @@ var drinkVolumeArray: [Int] = []
 var drinkQuantityArray: [Int] = []
 var drinkDateArray: [Date] = []
 var drinkHungerArray: [Int] = []
+var drink = Drink()
 
 class AddDrinkVC: UIViewController
 {
@@ -23,13 +24,20 @@ class AddDrinkVC: UIViewController
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
 
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        if isFiltering
+        {
+            drink = filteredDrinks[myIndex]
+        }
+        else
+        {
+            drink = drinkList[myIndex]
+        }
         customizeSliders()
-        quantityLabel.text = String(drinkList[myIndex].quantity) + " мл"
-        volumeLabel.text = String(drinkList[myIndex].minVolume) + "°"
+        quantityLabel.text = String(drink.quantity) + " мл"
+        volumeLabel.text = String(drink.minVolume) + "°"
     }
     
     @IBAction func volumeSliderValueChanged(_ sender: UISlider)
@@ -55,18 +63,18 @@ class AddDrinkVC: UIViewController
         sender.value = round(currentValue)
     }
     
-    
     func customizeSliders()
     {
         let quantitySliderStep: Float = 50.0
         let volumeSliderStep: Float = 1.0
-        if let maxVolume = drinkList[myIndex].maxVolume
+        
+        if let maxVolume = drink.maxVolume
         {
             volumeSlider.isEnabled = true
             quantitySlider.isEnabled = true
             volumeSlider.maximumValue = Float(maxVolume)
-            volumeSlider.minimumValue = Float(drinkList[myIndex].minVolume)
-            volumeSlider.value = round(Float(drinkList[myIndex].minVolume) / volumeSliderStep) * volumeSliderStep
+            volumeSlider.minimumValue = Float(drink.minVolume)
+            volumeSlider.value = round(Float(drink.minVolume) / volumeSliderStep) * volumeSliderStep
         }
         else
         {
@@ -74,7 +82,7 @@ class AddDrinkVC: UIViewController
         }
         quantitySlider.maximumValue = 1000.0
         quantitySlider.minimumValue = 50.0
-        quantitySlider.value = round(Float(drinkList[myIndex].quantity) / quantitySliderStep) * quantitySliderStep
+        quantitySlider.value = round(Float(drink.quantity) / quantitySliderStep) * quantitySliderStep
         hungerSlider.maximumValue = 22.0
         hungerSlider.minimumValue = 0.0
         hungerSlider.value = 10.0
@@ -91,13 +99,13 @@ class AddDrinkVC: UIViewController
         let tempQuantity = Int(quantitySlider.value)
         let minVolume = Int(volumeSlider.value)
         let tempDrink: Drink
-        if let maxVolume = drinkList[myIndex].maxVolume
+        if let maxVolume = drink.maxVolume
         {
-            tempDrink = Drink(name: drinkList[myIndex].name, minVolume: minVolume, quantity: tempQuantity, maxVolume: maxVolume, date: datePicker.date, hunger: Int(hungerSlider!.value))
+            tempDrink = Drink(name: drink.name, minVolume: minVolume, quantity: tempQuantity, maxVolume: maxVolume, date: datePicker.date, hunger: Int(hungerSlider!.value))
         }
         else
         {
-            tempDrink = Drink(name: drinkList[myIndex].name, minVolume: drinkList[myIndex].minVolume, quantity: tempQuantity, maxVolume: nil, date: datePicker.date, hunger: Int(hungerSlider!.value))
+            tempDrink = Drink(name: drink.name, minVolume: drink.minVolume, quantity: tempQuantity, maxVolume: nil, date: datePicker.date, hunger: Int(hungerSlider!.value))
         }
 
         drinkNameArray.append(tempDrink.name)

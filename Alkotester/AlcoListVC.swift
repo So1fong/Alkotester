@@ -11,6 +11,18 @@ import UIKit
 // MARK: - Объявление структуры
 var drinkList: [Drink] = []
 var myIndex = 0
+var filteredDrinks = [Drink]()
+let searchController = UISearchController(searchResultsController: nil)
+private var searchBarIsEmpty: Bool
+{
+    guard let text = searchController.searchBar.text else { return false }
+    return text.isEmpty
+}
+var isFiltering: Bool
+{
+    return searchController.isActive && !searchBarIsEmpty
+}
+
 
 struct Drink: Codable
 {
@@ -20,6 +32,16 @@ struct Drink: Codable
     var maxVolume: Int?
     var date: Date?
     var hunger: Int?
+    
+    init()
+    {
+        self.name = ""
+        self.minVolume = 0
+        self.quantity = 0
+        self.maxVolume = nil
+        self.date = nil
+        self.hunger = nil
+    }
     
     init(name: String, minVolume: Int, quantity: Int)
     {
@@ -78,14 +100,25 @@ extension Drink: Equatable
 class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
         fillArrays()
+        initializeSearchController()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 50
+    }
+    
+    func initializeSearchController()
+    {
+        searchController.searchResultsUpdater = self as UISearchResultsUpdating
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск по названию"
+        navigationItem.searchController = searchController
+        searchController.searchBar.setValue("Отмена", forKey: "cancelButtonText")
+        definesPresentationContext = true
     }
     
     // MARK: - Заполнение массива структур
@@ -123,7 +156,11 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // MARK: - Логика ячеек таблицы
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return (drinkList.count)
+        if isFiltering
+        {
+            return filteredDrinks.count
+        }
+        return drinkList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -132,17 +169,28 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         {
             fatalError("Could not dequeue cell")
         }
-        cell.drinkNameLabel.text = drinkList[indexPath.row].name
-        cell.alcoholQuantityLabel.text = String(drinkList[indexPath.row].quantity) + " мл"
-        if let maxVolume = drinkList[indexPath.row].maxVolume
+        
+        var drink: Drink
+        if isFiltering
         {
-            cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].minVolume) + "-" + String(maxVolume) + "%"
+            drink = filteredDrinks[indexPath.row]
         }
         else
         {
-            cell.alcoholVolumeLabel.text = String(drinkList[indexPath.row].minVolume) + "%"
+            drink = drinkList[indexPath.row]
         }
-        switch drinkList[indexPath.row].minVolume
+        
+        cell.drinkNameLabel.text = drink.name
+        cell.alcoholQuantityLabel.text = String(drink.quantity) + " мл"
+        if let maxVolume = drink.maxVolume
+        {
+            cell.alcoholVolumeLabel.text = String(drink.minVolume) + "-" + String(maxVolume) + "%"
+        }
+        else
+        {
+            cell.alcoholVolumeLabel.text = String(drink.minVolume) + "%"
+        }
+        switch drink.minVolume
         {
         case 0..<10:
             cell.alcoholVolumeLabel.textColor = UIColor.green
@@ -158,8 +206,45 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "segue"
+        {
+            if let indexPath = tableView.indexPathForSelectedRow
+            {
+                let _: Drink
+                if isFiltering
+                {
+                    _ = filteredDrinks[indexPath.row]
+                }
+                else
+                {
+                    _ = drinkList[indexPath.row]
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         myIndex = indexPath.row
+    }
+    
+
+}
+
+extension AlcoListVC: UISearchResultsUpdating
+{
+    func filterContentForSearchText(_ searchText: String)
+    {
+        filteredDrinks = drinkList.filter({( drink: Drink) -> Bool in
+            return drink.name.lowercased().contains(searchText.lowercased())
+        })
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController)
+    {
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
