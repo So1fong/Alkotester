@@ -125,6 +125,11 @@ class PromilleCalculator
         print(last3DaysDrinkArray, last3DaysDrinkArray.count)
         getWeight()
         getCoefficient()
+        var hourBefore = Date(timeIntervalSinceNow: 0)
+        hourBefore.addDays(daysToAdd: -3)
+        var hourAfter = hourBefore
+        hourAfter.addHours(hoursToAdd: 1)
+        //var hoursPassed =
         
         for i in 0...last3DaysDrinkArray.count-1
         {
@@ -138,7 +143,6 @@ class PromilleCalculator
         print("alcoholConsumed \(alcoholConsumed)")
         print("weight = \(weight), rCoef = \(rCoef)")
         currentState = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
-        
     }
     
     func timeLeft(promilleNumber: Double) -> Double

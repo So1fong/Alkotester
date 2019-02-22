@@ -10,10 +10,11 @@ import UIKit
 
 let calc = PromilleCalculator()
 var currentState: Double = 0
+var drinkDictionary: [Int : Double] = [:]
+
 
 class StateVC: UIViewController
 {
-
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var sobrietyLabel: UILabel!
     var promilleLabel = UILabel()
@@ -52,7 +53,7 @@ class StateVC: UIViewController
             for _ in 0...72
             {
                 calc.calculatePromille(currentTime: currentTime)
-                currentTime.addHours(hoursToAdd: -1)
+                currentTime.addHours(hoursToAdd: 1)
                 if currentState <= promilleLoss
                 {
                     currentState = 0
