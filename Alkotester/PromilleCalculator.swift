@@ -119,30 +119,16 @@ class PromilleCalculator
         }
     }
     
-    func calculatePromille(currentTime: Date)
+    @discardableResult func calculatePromille(forDrink: Drink) -> Double
     {
         //формула Видмарка
-        print(last3DaysDrinkArray, last3DaysDrinkArray.count)
         getWeight()
         getCoefficient()
-        var hourBefore = Date(timeIntervalSinceNow: 0)
-        hourBefore.addDays(daysToAdd: -3)
-        var hourAfter = hourBefore
-        hourAfter.addHours(hoursToAdd: 1)
-        //var hoursPassed =
-        
-        for i in 0...last3DaysDrinkArray.count-1
-        {
-            if currentTime.isGreaterThanDate(dateToCompare: last3DaysDrinkArray[i].date!)
-            {
-                let hungerCoef = 1.0 - (Double(last3DaysDrinkArray[i].hunger!) / 100)
-                print("hunger = \(String(describing: last3DaysDrinkArray[i].hunger)), hungerCoef = \(hungerCoef)")
-                alcoholConsumed = (Double(last3DaysDrinkArray[i].quantity) * Double(last3DaysDrinkArray[i].minVolume) * hungerCoef) / 100
-            }
-        }
-        print("alcoholConsumed \(alcoholConsumed)")
-        print("weight = \(weight), rCoef = \(rCoef)")
+        let hungerCoef = 1.0 - (Double(forDrink.hunger!) / 100)
+        alcoholConsumed = (Double(forDrink.quantity) * Double(forDrink.minVolume) * hungerCoef) / 100
         currentState = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
+        print(currentState)
+        return currentState
     }
     
     func timeLeft(promilleNumber: Double) -> Double
@@ -164,7 +150,7 @@ class PromilleCalculator
             }
         }
         var timePassed = abs(earliestDate.timeIntervalSinceNow)
-        print("timePassed \(timePassed)")
+        //print("timePassed \(timePassed)")
         var newPromilles = 0.0
         while timePassed > 0
         {
@@ -172,7 +158,7 @@ class PromilleCalculator
             newPromilles = currentPromilles - 0.01
         }
         newPromilles = Double(round(100 * newPromilles) / 100)
-        print("new promilles = \(newPromilles)")
+        //print("new promilles = \(newPromilles)")
         return newPromilles
     }
 }

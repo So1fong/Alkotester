@@ -12,6 +12,14 @@ let calc = PromilleCalculator()
 var currentState: Double = 0
 var drinkDictionary: [Int : Double] = [:]
 
+extension Dictionary
+{
+    static func += (left: inout [Key: Value], right: [Key: Value]) {
+        for (key, value) in right {
+            left[key] = value
+        }
+    }
+}
 
 class StateVC: UIViewController
 {
@@ -39,7 +47,31 @@ class StateVC: UIViewController
     
     override func viewDidAppear(_ animated: Bool)
     {
-        let promilleLoss = 0.015
+        calc.fillLast3DaysDrinkArray()
+        var drinkDictionary: [Int:Double] = [:]
+        for i in 0...last3DaysDrinkArray.count-1
+        {
+            let timePassed = abs(last3DaysDrinkArray[i].date!.timeIntervalSinceNow)
+            let minutes = timePassed / 60
+            var hours = minutes / 60
+            hours = round(minutes)
+            if hours <= 72 * 60
+            {
+                var promille = calc.calculatePromille(forDrink: last3DaysDrinkArray[i])
+                if drinkDictionary[Int(hours)] != 0 && drinkDictionary[Int(hours)] != nil
+                {
+                    promille += drinkDictionary[Int(hours)]!
+                    
+                }
+                print("promille \(promille)")
+                drinkDictionary[Int(hours)] = promille
+            }
+        }
+        
+        print("\n\n\n\n\ndrinkDictionary \(drinkDictionary)\n\n\n\n\n")
+        
+        let promilleLoss = 0.15 / 60
+        currentState = 0
         if drinkNameArray.count == 0
         {
             sobrietyLabel.text = "Для более точного расчета количества алкоголя в крови требуется ввести свои данные в настройках"
@@ -47,13 +79,13 @@ class StateVC: UIViewController
         }
         else
         {
-            calc.fillLast3DaysDrinkArray()
-            let currentTime = Date(timeIntervalSinceNow: 0)
-            currentTime.addDays(daysToAdd: -3)
-            for _ in 0...72
+            var numberOfMinutesOfLast3Days = 72 * 60
+            while numberOfMinutesOfLast3Days >= 0
             {
-                calc.calculatePromille(currentTime: currentTime)
-                currentTime.addHours(hoursToAdd: 1)
+                if let value = drinkDictionary[numberOfMinutesOfLast3Days]
+                {
+                    currentState += value
+                }
                 if currentState <= promilleLoss
                 {
                     currentState = 0
@@ -61,7 +93,9 @@ class StateVC: UIViewController
                 else
                 {
                     currentState -= promilleLoss
+                    print("currentState = \(currentState)")
                 }
+                numberOfMinutesOfLast3Days = numberOfMinutesOfLast3Days - 1
             }
             currentState = Double(round(100 * currentState) / 100) //округление до 2 знака после запятой
             let timeLeft = calc.timeLeft(promilleNumber: currentState)
@@ -97,7 +131,6 @@ class StateVC: UIViewController
         addButton.layer.shadowOpacity = 1.0
         addButton.layer.cornerRadius = addButton.bounds.width / 2
     }
-
     // MARK: - Navigation
 
 }
