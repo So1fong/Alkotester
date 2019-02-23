@@ -137,8 +137,6 @@ class PromilleCalculator
         var timeLeft = promilleNumber / 0.15
         timeLeft = Double(round(10 * timeLeft) / 10) //округление до 1 знака после запятой
         return timeLeft
-        
-        
     }
     
     func recalculatePromilleWithHours(currentPromilles: Double) -> Double
