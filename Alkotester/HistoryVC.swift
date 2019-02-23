@@ -91,7 +91,7 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 50
+        tableView.rowHeight = 55
     }
     
     override func viewDidAppear(_ animated: Bool)

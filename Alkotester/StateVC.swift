@@ -71,23 +71,27 @@ class StateVC: UIViewController
     func fillDrinkDictionary()
     {
         drinkDictionary = [:]
-        for i in 0...last3DaysDrinkArray.count-1
+        if last3DaysDrinkArray.count != 0
         {
-            let timePassed = abs(last3DaysDrinkArray[i].date!.timeIntervalSinceNow)
-            let minutes = timePassed / 60
-            var hours = minutes / 60
-            hours = round(minutes)
-            if hours <= 72 * 60
+            for i in 0...last3DaysDrinkArray.count-1
             {
-                var promille = calc.calculatePromille(forDrink: last3DaysDrinkArray[i])
-                if drinkDictionary[Int(hours)] != 0 && drinkDictionary[Int(hours)] != nil
+                let timePassed = abs(last3DaysDrinkArray[i].date!.timeIntervalSinceNow)
+                let minutes = timePassed / 60
+                var hours = minutes / 60
+                hours = round(minutes)
+                if hours <= 72 * 60
                 {
-                    promille += drinkDictionary[Int(hours)]!
+                    var promille = calc.calculatePromille(forDrink: last3DaysDrinkArray[i])
+                    if drinkDictionary[Int(hours)] != 0 && drinkDictionary[Int(hours)] != nil
+                    {
+                        promille += drinkDictionary[Int(hours)]!
+                    }
+                    print("promille \(promille)")
+                    drinkDictionary[Int(hours)] = promille
                 }
-                //print("promille \(promille)")
-                drinkDictionary[Int(hours)] = promille
             }
         }
+
     }
     
     func updatePromille()
@@ -107,7 +111,7 @@ class StateVC: UIViewController
             else
             {
                 currentState -= promilleLoss
-                //print("currentState = \(currentState)")
+                print("currentState = \(currentState)")
             }
             numberOfMinutesOfLast3Days = numberOfMinutesOfLast3Days - 1
         }
@@ -143,6 +147,8 @@ class StateVC: UIViewController
         addButton.layer.shadowRadius = 5
         addButton.layer.shadowOpacity = 1.0
         addButton.layer.cornerRadius = addButton.bounds.width / 2
+        addButton.contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 1, right: 2)
+        //addButton.titleLabel?.center = addButton.center
     }
     // MARK: - Navigation
 
