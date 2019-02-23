@@ -41,6 +41,7 @@ class StateVC: UIViewController
     override func viewDidAppear(_ animated: Bool)
     {
         calc.fillLast3DaysDrinkArray()
+        print(last3DaysDrinkArray, last3DaysDrinkArray.count)
         fillDrinkDictionary()
         //print("\n\n\n\n\ndrinkDictionary \(drinkDictionary)\n\n\n\n\n")
         if drinkNameArray.count == 0
@@ -64,7 +65,7 @@ class StateVC: UIViewController
     {
         fillDrinkDictionary()
         updatePromille()
-        print("timer fires")
+        //print("timer fires")
     }
     
     func fillDrinkDictionary()

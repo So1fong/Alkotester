@@ -65,6 +65,7 @@ class PromilleCalculator
     
     func fillLast3DaysDrinkArray()
     {
+        last3DaysDrinkArray = []
         if (drinkNameArray.count > 0)
         {
             var date3DaysAgo = Date(timeIntervalSinceNow: 0) // now
@@ -127,7 +128,7 @@ class PromilleCalculator
         let hungerCoef = 1.0 - (Double(forDrink.hunger!) / 100)
         alcoholConsumed = (Double(forDrink.quantity) * Double(forDrink.minVolume) * hungerCoef) / 100
         currentState = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
-        print(currentState)
+        //print(currentState)
         return currentState
     }
     
