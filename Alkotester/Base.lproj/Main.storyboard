@@ -378,7 +378,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vKd-2d-hDS">
-                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="655"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="57" id="pyO-LQ-ulg" customClass="HistoryTableViewCell" customModule="Alkotester" customModuleProvider="target">
@@ -447,18 +447,35 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1r3-83-VTP">
+                                <rect key="frame" x="0.0" y="44" width="375" height="29"/>
+                                <segments>
+                                    <segment title="День"/>
+                                    <segment title="Неделя"/>
+                                    <segment title="Месяц"/>
+                                    <segment title="Все время"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="IUP-ei-TzG" eventType="valueChanged" id="YWj-OT-MAp"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vKd-2d-hDS" firstAttribute="leading" secondItem="EAu-kk-734" secondAttribute="leading" id="6ke-CL-Ijd"/>
+                            <constraint firstItem="EAu-kk-734" firstAttribute="trailing" secondItem="1r3-83-VTP" secondAttribute="trailing" id="7gs-7Z-wpq"/>
+                            <constraint firstItem="1r3-83-VTP" firstAttribute="leading" secondItem="EAu-kk-734" secondAttribute="leading" id="8EM-ZY-Hn1"/>
                             <constraint firstItem="EAu-kk-734" firstAttribute="trailing" secondItem="vKd-2d-hDS" secondAttribute="trailing" id="93P-6W-7d1"/>
-                            <constraint firstItem="vKd-2d-hDS" firstAttribute="top" secondItem="EAu-kk-734" secondAttribute="top" id="dg5-fs-I99"/>
+                            <constraint firstItem="1r3-83-VTP" firstAttribute="top" secondItem="EAu-kk-734" secondAttribute="top" id="R8r-bo-eFQ"/>
+                            <constraint firstItem="vKd-2d-hDS" firstAttribute="top" secondItem="1r3-83-VTP" secondAttribute="bottom" constant="2" id="ZVJ-xw-if6"/>
+                            <constraint firstItem="vKd-2d-hDS" firstAttribute="top" secondItem="EAu-kk-734" secondAttribute="top" constant="30" id="feb-cU-XQJ"/>
                             <constraint firstItem="EAu-kk-734" firstAttribute="bottom" secondItem="vKd-2d-hDS" secondAttribute="bottom" id="lJS-zm-iKV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EAu-kk-734"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="История" image="History" selectedImage="History" id="Ueh-dg-LFl"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="1r3-83-VTP" id="9zW-WI-g8n"/>
                         <outlet property="tableView" destination="vKd-2d-hDS" id="uik-Z9-CR9"/>
                     </connections>
                 </viewController>

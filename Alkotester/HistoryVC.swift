@@ -11,10 +11,12 @@ import UIKit
 class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    var timeIntervalDrinkArray: [Drink] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return drinkNameArray.count
+        return timeIntervalDrinkArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -23,11 +25,11 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         {
             fatalError("Could not dequeue cell")
         }
-        historyCell.drinkNameLabel.text = drinkNameArray[indexPath.row]
-        historyCell.drinkQuantityLabel.text = String(drinkQuantityArray[indexPath.row]) + " мл"
-        historyCell.drinkVolumeLabel.text = String(drinkVolumeArray[indexPath.row]) + "%"
+        historyCell.drinkNameLabel.text = timeIntervalDrinkArray[indexPath.row].name
+        historyCell.drinkQuantityLabel.text = String(timeIntervalDrinkArray[indexPath.row].quantity) + " мл"
+        historyCell.drinkVolumeLabel.text = String(timeIntervalDrinkArray[indexPath.row].minVolume) + "%"
         let yellow = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-        switch drinkVolumeArray[indexPath.row]
+        switch timeIntervalDrinkArray[indexPath.row].minVolume
         {
         case 0..<10:
             historyCell.drinkVolumeLabel.textColor = UIColor.green
@@ -42,7 +44,11 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
-        historyCell.drinkDateLabel.text = formatter.string(from: drinkDateArray[indexPath.row])
+        if let date = timeIntervalDrinkArray[indexPath.row].date
+        {
+            historyCell.drinkDateLabel.text = formatter.string(from: date)
+        }
+        
         return historyCell
     }
     
@@ -93,13 +99,64 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 55
+        segmentedControl.selectedSegmentIndex = 0
+        //var dayAgo = Date(timeIntervalSinceNow: 0)
+        //dayAgo = dayAgo.addDays(daysToAdd: -1)
+        //fillTimeIntervalDrinkArray(dateToCompate: dayAgo)
+        //segmentedControlValueChanged(segmentedControl)
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         tableView.reloadData()
     }
+    
+    func fillTimeIntervalDrinkArray(dateToCompate: Date?)
+    {
+        timeIntervalDrinkArray = []
+        let now = Date(timeIntervalSinceNow: 0)
+        for i in 0...drinkDateArray.count-1
+        {
+            if let date = dateToCompate
+            {
+                if drinkDateArray[i].isLessThanDate(dateToCompare: now) && drinkDateArray[i].isGreaterThanDate(dateToCompare: date)
+                {
+                    timeIntervalDrinkArray.append(Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i], quantity: drinkQuantityArray[i], maxVolume: nil, date: drinkDateArray[i], hunger: nil))
+                }
+            }
+            else
+            {
+                if drinkDateArray[i].isLessThanDate(dateToCompare: now)
+                {
+                   timeIntervalDrinkArray.append(Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i], quantity: drinkQuantityArray[i], maxVolume: nil, date: drinkDateArray[i], hunger: nil))
+                }
+            }
+        }
+    }
 
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl)
+    {
+        switch sender.selectedSegmentIndex
+        {
+        case 0:
+            var dayAgo = Date(timeIntervalSinceNow: 0)
+            dayAgo = dayAgo.addDays(daysToAdd: -1)
+            fillTimeIntervalDrinkArray(dateToCompate: dayAgo)
+        case 1:
+            var weekAgo = Date(timeIntervalSinceNow: 0)
+            weekAgo = weekAgo.addDays(daysToAdd: -7)
+            fillTimeIntervalDrinkArray(dateToCompate: weekAgo)
+        case 2:
+            var monthAgo = Date(timeIntervalSinceNow: 0)
+            monthAgo = monthAgo.addDays(daysToAdd: -30)
+            fillTimeIntervalDrinkArray(dateToCompate: monthAgo)
+        case 3:
+            fillTimeIntervalDrinkArray(dateToCompate: nil)
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
     // MARK: - Navigation
 
 
