@@ -26,12 +26,13 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         historyCell.drinkNameLabel.text = drinkNameArray[indexPath.row]
         historyCell.drinkQuantityLabel.text = String(drinkQuantityArray[indexPath.row]) + " мл"
         historyCell.drinkVolumeLabel.text = String(drinkVolumeArray[indexPath.row]) + "%"
+        let yellow = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         switch drinkVolumeArray[indexPath.row]
         {
         case 0..<10:
             historyCell.drinkVolumeLabel.textColor = UIColor.green
         case 10..<20:
-            historyCell.drinkVolumeLabel.textColor = UIColor.yellow
+            historyCell.drinkVolumeLabel.textColor = yellow
         case 20..<30:
             historyCell.drinkVolumeLabel.textColor = UIColor.orange
         case 30...100:

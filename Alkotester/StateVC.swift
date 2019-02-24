@@ -8,10 +8,18 @@
 
 import UIKit
 
+extension Double
+{
+    func truncate(places : Int)-> Double
+    {
+        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+    }
+}
+
 let calc = PromilleCalculator()
 var currentState: Double = 0
 var drinkDictionary: [Int : Double] = [:]
-let promilleLoss = 0.15 / 60
+let promilleLoss = 0.15 / 60 / 12
 var timer: Timer = Timer()
 
 class StateVC: UIViewController
@@ -32,8 +40,8 @@ class StateVC: UIViewController
         promilleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         promilleLabel.center = circle.center
         promilleLabel.textAlignment = .center
-        promilleLabel.font = promilleLabel.font.withSize(32)
         promilleLabel.textColor = UIColor.black
+        promilleLabel.font = promilleLabel.font.withSize(32)
         self.view.addSubview(circle)
         self.view.addSubview(promilleLabel)
     }
@@ -43,7 +51,6 @@ class StateVC: UIViewController
         calc.fillLast3DaysDrinkArray()
         print(last3DaysDrinkArray, last3DaysDrinkArray.count)
         fillDrinkDictionary()
-        //print("\n\n\n\n\ndrinkDictionary \(drinkDictionary)\n\n\n\n\n")
         if drinkNameArray.count == 0
         {
             sobrietyLabel.text = "Для более точного расчета количества алкоголя в крови требуется ввести свои данные в настройках"
@@ -53,7 +60,7 @@ class StateVC: UIViewController
         {
             updatePromille()
         }
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateInfoWithTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(updateInfoWithTimer), userInfo: nil, repeats: true)
     }
     
     override func viewDidDisappear(_ animated: Bool)
@@ -65,7 +72,6 @@ class StateVC: UIViewController
     {
         fillDrinkDictionary()
         updatePromille()
-        //print("timer fires")
     }
     
     func fillDrinkDictionary()
@@ -91,7 +97,6 @@ class StateVC: UIViewController
                 }
             }
         }
-
     }
     
     func updatePromille()
@@ -115,16 +120,20 @@ class StateVC: UIViewController
             }
             numberOfMinutesOfLast3Days = numberOfMinutesOfLast3Days - 1
         }
-        currentState = Double(round(1000 * currentState) / 1000) //округление до 2 знака после запятой
+        currentState = currentState.truncate(places: 3)
+        if currentState < 10
+        {
+            promilleLabel.font = promilleLabel.font.withSize(38)
+        }
         let timeLeft = calc.timeLeft(promilleNumber: currentState)
+        promilleLabel.numberOfLines = 0
         promilleLabel.text = String(currentState) + "‰"
         if currentState == 0.0
         {
             sobrietyLabel.text = "Вы трезвы"
         }
-        else if currentState >= 0.1 && currentState <= 0.35
+        else if currentState > 0.0 && currentState <= 0.35
         {
-            
             sobrietyLabel.text = "Концентрация алкоголя в крови в пределах допустимой нормы в 0.35‰. Можно садиться за руль. До полного выведения алкоголя из организма осталось \(timeLeft) часов"
         }
         else
@@ -148,7 +157,6 @@ class StateVC: UIViewController
         addButton.layer.shadowOpacity = 1.0
         addButton.layer.cornerRadius = addButton.bounds.width / 2
         addButton.contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 1, right: 2)
-        //addButton.titleLabel?.center = addButton.center
     }
     // MARK: - Navigation
 
