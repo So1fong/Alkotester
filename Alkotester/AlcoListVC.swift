@@ -124,6 +124,7 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // MARK: - Заполнение массива структур
     func fillArrays()
     {
+        drinkList = []
         drinkList.append(Drink(name: "Сидр", minVolume: 2, quantity: 500, maxVolume: 7)) //2-7
         drinkList.append(Drink(name: "Алкогольный коктейль", minVolume: 4, quantity: 200, maxVolume: 12)) //4-12
         drinkList.append(Drink(name: "Пиво", minVolume: 4, quantity: 500, maxVolume: 14)) //4-14
@@ -230,8 +231,6 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     {
         myIndex = indexPath.row
     }
-    
-
 }
 
 extension AlcoListVC: UISearchResultsUpdating
