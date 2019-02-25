@@ -73,6 +73,10 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     last3DaysDrinkArray.remove(at: index)
                 }
             }
+            if let index = self.timeIntervalDrinkArray.firstIndex(of: tempDrink)
+            {
+                self.timeIntervalDrinkArray.remove(at: index)
+            }
             drinkNameArray.remove(at: indexPath.row)
             drinkQuantityArray.remove(at: indexPath.row)
             drinkVolumeArray.remove(at: indexPath.row)
@@ -121,14 +125,14 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             {
                 if drinkDateArray[i].isLessThanDate(dateToCompare: now) && drinkDateArray[i].isGreaterThanDate(dateToCompare: date)
                 {
-                    timeIntervalDrinkArray.append(Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i], quantity: drinkQuantityArray[i], maxVolume: nil, date: drinkDateArray[i], hunger: nil))
+                    timeIntervalDrinkArray.append(Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i], quantity: drinkQuantityArray[i], maxVolume: 0, date: drinkDateArray[i], hunger: drinkHungerArray[i]))
                 }
             }
             else
             {
                 if drinkDateArray[i].isLessThanDate(dateToCompare: now)
                 {
-                   timeIntervalDrinkArray.append(Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i], quantity: drinkQuantityArray[i], maxVolume: nil, date: drinkDateArray[i], hunger: nil))
+                   timeIntervalDrinkArray.append(Drink(name: drinkNameArray[i], minVolume: drinkVolumeArray[i], quantity: drinkQuantityArray[i], maxVolume: 0, date: drinkDateArray[i], hunger: drinkHungerArray[i]))
                 }
             }
         }
