@@ -128,7 +128,6 @@ class PromilleCalculator
         let hungerCoef = 1.0 - (Double(forDrink.hunger!) / 100)
         alcoholConsumed = (Double(forDrink.quantity) * Double(forDrink.minVolume) * hungerCoef) / 100
         currentState = (self.alcoholConsumed / (Double(weight) * rCoef)) * 0.8
-        //print(currentState)
         return currentState
     }
     
