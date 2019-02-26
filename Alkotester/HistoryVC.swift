@@ -119,6 +119,10 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     {
         timeIntervalDrinkArray = []
         let now = Date(timeIntervalSinceNow: 0)
+        if drinkDateArray.count == 0
+        {
+            return
+        }
         for i in 0...drinkDateArray.count-1
         {
             if let date = dateToCompate
