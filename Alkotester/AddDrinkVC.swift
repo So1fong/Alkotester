@@ -109,15 +109,11 @@ class AddDrinkVC: UIViewController
         {
             tempDrink = Drink(name: drink.name, minVolume: drink.minVolume, quantity: tempQuantity, maxVolume: nil, date: datePicker.date, hunger: Int(hungerSlider!.value))
         }
-
         drinkNameArray.append(tempDrink.name)
         drinkVolumeArray.append(tempDrink.minVolume)
         drinkQuantityArray.append(tempDrink.quantity)
         drinkDateArray.append(tempDrink.date!)
         drinkHungerArray.append(tempDrink.hunger!)
-        print(drinkNameArray, drinkNameArray.count)
-        print(drinkVolumeArray, drinkVolumeArray.count)
-        print(drinkQuantityArray, drinkQuantityArray.count)
         UserDefaults.standard.set(drinkNameArray, forKey: "settingsDrinkNameArray")
         UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
         UserDefaults.standard.set(drinkQuantityArray, forKey: "settingsDrinkQuantityArray")
