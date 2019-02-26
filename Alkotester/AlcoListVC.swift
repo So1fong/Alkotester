@@ -8,7 +8,6 @@
 
 import UIKit
 
-// MARK: - Объявление структуры
 var drinkList: [Drink] = []
 var myIndex = 0
 var filteredDrinks = [Drink]()
@@ -23,7 +22,7 @@ var isFiltering: Bool
     return searchController.isActive && !searchBarIsEmpty
 }
 
-
+// MARK: - Объявление структуры Drink
 struct Drink: Codable
 {
     var name: String
@@ -74,6 +73,7 @@ struct Drink: Codable
     }
 }
 
+// MARK: - Расширение структуры Drink
 extension Drink: Equatable
 {
     static func == (lhs: Drink, rhs: Drink) -> Bool
@@ -116,7 +116,14 @@ class AlcoListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск по названию"
-        navigationItem.searchController = searchController
+        if #available(iOS 11.0, *)
+        {
+            navigationItem.searchController = searchController
+        }
+        else
+        {
+            tableView.tableHeaderView = searchController.searchBar
+        }
         searchController.searchBar.setValue("Отмена", forKey: "cancelButtonText")
         definesPresentationContext = true
     }

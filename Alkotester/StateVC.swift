@@ -116,7 +116,6 @@ class StateVC: UIViewController
             else
             {
                 currentState -= promilleLoss
-                print("currentState = \(currentState)")
             }
             numberOfMinutesOfLast3Days = numberOfMinutesOfLast3Days - 1
         }
@@ -128,6 +127,8 @@ class StateVC: UIViewController
         let timeLeft = calc.timeLeft(promilleNumber: currentState)
         promilleLabel.numberOfLines = 0
         promilleLabel.text = String(currentState) + "‰"
+        sobrietyLabel.textColor = UIColor.black
+        sobrietyLabel.font = sobrietyLabel.font.withSize(20)
         if currentState == 0.0
         {
             sobrietyLabel.text = "Вы трезвы"
@@ -135,6 +136,11 @@ class StateVC: UIViewController
         else if currentState > 0.0 && currentState <= 0.35
         {
             sobrietyLabel.text = "Концентрация алкоголя в крови в пределах допустимой нормы в 0.35‰. Можно садиться за руль. До полного выведения алкоголя из организма осталось \(timeLeft) часов"
+        }
+        else if currentState >= 5.0
+        {
+            sobrietyLabel.textColor = UIColor.red
+            sobrietyLabel.text = "У вас опасный уровень алкоголя в крови. До полного выведения алкоголя из организма осталось \(timeLeft) часов"
         }
         else
         {
