@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             {
                 tabBarController.selectedIndex = 2
                 UserDefaults.standard.set(true, forKey: "launchedBefore")
-
             }
         }
         return true

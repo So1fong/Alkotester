@@ -48,7 +48,6 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         {
             historyCell.drinkDateLabel.text = formatter.string(from: date)
         }
-        
         return historyCell
     }
     
@@ -57,9 +56,6 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let delete = UITableViewRowAction(style: .destructive, title: "Удалить", handler:
         {
             (action, indexPath) in
-            print(drinkNameArray, drinkNameArray.count)
-            print(drinkQuantityArray, drinkQuantityArray.count)
-            print(drinkVolumeArray, drinkVolumeArray.count)
             var date3DaysAgo = Date(timeIntervalSinceNow: 0) // now
             date3DaysAgo = date3DaysAgo.addDays(daysToAdd: -3) // 3 days ago
             let tempDrink = Drink(name: drinkNameArray[indexPath.row], minVolume: drinkVolumeArray[indexPath.row],
@@ -82,10 +78,6 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             drinkVolumeArray.remove(at: indexPath.row)
             drinkDateArray.remove(at: indexPath.row)
             drinkHungerArray.remove(at: indexPath.row)
-
-            print(drinkNameArray, drinkNameArray.count)
-            print(drinkQuantityArray, drinkQuantityArray.count)
-            print(drinkVolumeArray, drinkVolumeArray.count)
             
             UserDefaults.standard.set(drinkNameArray, forKey: "settingsDrinkNameArray")
             UserDefaults.standard.set(drinkVolumeArray, forKey: "settingsDrinkVolumeArray")
@@ -103,16 +95,13 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 55
-        segmentedControl.selectedSegmentIndex = 0
-        //var dayAgo = Date(timeIntervalSinceNow: 0)
-        //dayAgo = dayAgo.addDays(daysToAdd: -1)
-        //fillTimeIntervalDrinkArray(dateToCompate: dayAgo)
-        //segmentedControlValueChanged(segmentedControl)
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         tableView.reloadData()
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControlValueChanged(segmentedControl)
     }
     
     func fillTimeIntervalDrinkArray(dateToCompate: Date?)
@@ -123,6 +112,7 @@ class HistoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         {
             return
         }
+        
         for i in 0...drinkDateArray.count-1
         {
             if let date = dateToCompate
